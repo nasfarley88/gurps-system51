@@ -3,6 +3,7 @@
 \usepackage{gurps}
 \usepackage{libertine}
 \usepackage{microtype}
+\usepackage{xparse}
 \renewcommand{\familydefault}{\sfdefault}
 
 \setulmarginsandblock{1.5cm}{1.5cm}{*}
@@ -11,7 +12,10 @@
 
 \setsecnumdepth{subsubsection}
 
-\title{System51 source book}
+% Useful macros
+\NewDocumentCommand{\system}{m}{\textsc{System#1}}
+
+\title{\system{51} source book}
 \author{Nathanael~Farley, David~Sumner, et al.}
 
 \begin{document}
@@ -27,8 +31,9 @@
 
 \begin{itemize}
 \item Worlds left desolate
-\item Rumours of worlds of dormant nanites waiting for enough energy to do
-  something
+\item \system{31} was abandoned during the wars with resources for the planets depleted
+\item Rumours of patches of dormant nanites, floating in space, waiting for
+  enough energy to do something
 \item Since then, nanites have been banned. Even the bad guy stay away from them
 \item This was all 1000~years ago. And people still remember. That's how bad.
 \end{itemize}
