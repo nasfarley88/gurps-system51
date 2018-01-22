@@ -5,7 +5,13 @@
 \usepackage{microtype}
 \usepackage{xparse}
 \usepackage{multicol}
+\usepackage{paralist}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage{transparent}
 \renewcommand{\familydefault}{\sfdefault}
+
+\graphicspath{{images/}}
 
 \setulmarginsandblock{1.5cm}{1.5cm}{*}
 \setlrmarginsandblock{1.5cm}{1.5cm}{*}
@@ -18,9 +24,17 @@
 \NewDocumentCommand{\player}{m}{\textbf{\mbox{#1}}}
 
 \NewDocumentCommand{\traititem}{smmm}{\item #2[#3] p.~#4}
-\NewDocumentEnvironment{traitlist}{}%
-{\onecolumn\begin{multicols}{3}\begin{itemize}}%
-  {\end{itemize}\end{multicols}\twocolumn}
+\NewDocumentEnvironment{traitlist}{O{List of traits.}o}%
+{\begin{figure*}
+    \begin{minipage}{1.0\linewidth}
+      \begin{multicols}{3}
+        \begin{compactitem}}%
+        {\end{compactitem}
+      \end{multicols}
+    \end{minipage}
+    \caption{#1}
+    \IfValueTF{#2}{\label{#2}}{}
+  \end{figure*}}
 
 
 \title{\system{51} source book}
@@ -31,8 +45,37 @@
 \part{General information}
 \label{part:general-information}
 
-\chapter{History}
+\chapter{Setting}
 \label{cha:history}
+
+\section{Map}
+\label{sec:map}
+
+The map of the galaxy as it currently stands can be found at \autoref{fig:mapofthegalaxy}.
+
+\begin{figure*}
+  \centering
+\NewDocumentCommand{\galaxymapcoord}{mm}{%
+  \fill (#1,#2) circle [radius=.6mm];
+  \draw (#1,#2) circle [radius=1.0mm];
+}
+
+\NewDocumentCommand{\galaxymappoint}{mmmO{0}}{%
+  \galaxymapcoord{#1}{#2};
+  \draw (#1,#2) -- ++({3-#4}, {3-#4}) -- ++ ({3-#1+#4},0);
+  \node[anchor=west] at ({6}, {#2+3-#4}) {#3};
+}
+  \begin{tikzpicture}
+    \node at (0,0) {{\transparent{0.6}%
+        \includegraphics[width=0.9\linewidth]{galaxy-B-3-neg-released-by-cc}}};
+    \galaxymappoint{1}{1}{\system{51}} \galaxymappoint{1.4}{0.9}{\system{37}}[1]
+    \galaxymappoint{1}{-2}{Earth}
+  \end{tikzpicture}
+  \caption{Map of the galaxy. Milky way galaxy photo from
+    \url{http://www.enderra.com/2012/02/01/milky-galaxy-black-white/},
+    annotations added.}
+  \label{fig:mapofthegalaxy}
+\end{figure*}
 
 \section{Nanite wars}
 \label{sec:nanite-wars}
@@ -61,13 +104,28 @@ to cross the river the nanties bound together to \emph{consume}.
 \chapter{Character creation}
 \label{cha:character-creation}
 
-As per every good \gurps game, the GM(s) provide a list of allowed advantages,
-disadvantages and skills. 
+\section{Advantages and disadvantages}
+\label{sec:advant-disadv}
+
+As per every good \gurps game, the GM(s) provide a list of recommended
+advantages, disadvantages and skills. These can be found in the
+Figures~\ref{fig:advantages}~\&~\ref{fig:disadvantages}.
+
+\subsection{Sleep}
+\label{sec:sleep}
+
+The eagle-eyed player will notice there are no (dis)advantages for sleep. Sleep
+can be difficult to track and often has pseudo-permenant effects that don't
+affect gameplay enough to justify their points.
+
+Players can buy any sleep related (dis)advantages as quirks for +1/-1 points for
+advantages/disadvantages respectively, ignoring any effect that lasts longer
+than a few seconds.
 
 
-\begin{traitlist}
+\begin{traitlist}[List of recomended advantages.][fig:advantages]
 %   \traititem{360° Vision}{25}{34}
-\traititem{3D Spatial Sense}{10}{34}
+% \traititem{3D Spatial Sense}{10}{34}
 \traititem{Absolute Direction\footnotemark[1]}{5}{34}
 \traititem{Absolute Timing\footnotemark[1]}{2}{35}
 % \traititem{Accessory}{1}{100}
@@ -78,8 +136,8 @@ disadvantages and skills.
 \traititem{Administrative Rank}{5 or 10/level}{30}
 \traititem{Affliction}{10/level}{35}
 % \traititem{Alcohol Tolerance}{1}{100}
-% \traititem{Allies}{Variable}{36} \traititem{Altered Time
-% Rate}{100/level}{38} \traititem{Alternate Form}{Variable}{83}
+\traititem{Allies\footnote{Only mechanical friends}}{Variable}{36}
+% \traititem{Altered Time Rate}{100/level}{38} \traititem{Alternate Form}{Variable}{83}
 \traititem{Alternate Identity}{5 or 15}{39}
 \traititem{Ambidexterity}{5}{39}
 % \traititem{Amphibious}{10}{40} \traititem{Animal Empathy}{5}{40}
@@ -222,7 +280,7 @@ disadvantages and skills.
 \traititem{Rapier Wit}{5}{79}
 % \traititem{Reawakened}{10}{80} \traititem{Recovery}{10}{80}
 % \traititem{Reduced Consumption}{2/level}{80}
-\traititem{Regeneration\footnotemark[1]}{Variable}{80}
+% \traititem{Regeneration\footnotemark[1]}{Variable}{80}
 % \traititem{Regrowth}{40}{80}
 \traititem{Religious Rank}{5 or 10/level}{30}
 \traititem{Reputation}{Variable}{26}
@@ -290,8 +348,7 @@ disadvantages and skills.
 \footnotetext[1]{Requires transhuman extension (i.e.~technological extension of the body)}
 \end{traitlist}
 
-Disads
-\begin{traitlist}
+\begin{traitlist}[List of disadvantages.][fig:disadvantages]
   \traititem{Absent-Mindedness}{-15}{122}
   % \traititem{Acceleration Weakness}{-1}{165}
   \traititem{Addiction}{Variable}{122, 164, 165}
@@ -477,7 +534,7 @@ Disads
   % \traititem{Weak Bite}{-2}{161}
   % \traititem{Weakness}{Variable}{161}
   \traititem{Wealth}{Variable}{25}
-  % \traititem{Weirdness Magnet}{-15}{161}
+
   % \traititem{Workaholic}{-5}{162}
   \traititem{Wounded}{-5}{162}
   % \traititem{Xenophilia}{-10*}{163}
@@ -559,7 +616,7 @@ wishes). If more is stolen the team will be in trouble.
 \paragraph{Pros}
 
 \begin{itemize}
-\item \player{Matt K.} will totally steal more
+\item \player{Thief} will totally steal more
 \item Can split the party to go information searching
   \begin{itemize}
   \item This even means that David and I can find different information and
