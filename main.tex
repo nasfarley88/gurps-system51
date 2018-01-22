@@ -17,7 +17,7 @@
 \NewDocumentCommand{\system}{m}{\textsc{System#1}}
 \NewDocumentCommand{\player}{m}{\textbf{\mbox{#1}}}
 
-\NewDocumentCommand{\traititem}{mmm}{\item #1[#2] p.~#3}
+\NewDocumentCommand{\traititem}{smmm}{\item #2[#3] p.~#4}
 \NewDocumentEnvironment{traitlist}{}%
 {\onecolumn\begin{multicols}{3}\begin{itemize}}%
   {\end{itemize}\end{multicols}\twocolumn}
@@ -300,7 +300,8 @@ Disads
   \traititem{Amnesia}{-10 or -25}{123}
   \traititem{Appearance}{Variable}{21}
   % \traititem{Attentive}{-1}{163}
-  \traititem{Bad Back}{-15 or -25}{123} \traititem{Bad Grip}{-5/level}{123}
+  \traititem{Bad Back}{-15 or -25}{123}
+  \traititem{Bad Grip}{-5/level}{123}
   \traititem{Bad Sight}{-25}{123}
   \traititem{Bad Smell}{-10}{124}
   \traititem{Bad Temper}{-10*}{124}
