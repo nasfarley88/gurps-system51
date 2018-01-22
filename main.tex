@@ -8,6 +8,7 @@
 \usepackage{paralist}
 \usepackage{graphicx}
 \usepackage{tikz}
+\usepackage{tcolorbox}
 \usepackage{transparent}
 \renewcommand{\familydefault}{\sfdefault}
 
@@ -109,18 +110,26 @@ to cross the river the nanties bound together to \emph{consume}.
 
 As per every good \gurps game, the GM(s) provide a list of recommended
 advantages, disadvantages and skills. These can be found in the
-Figures~\ref{fig:advantages}~\&~\ref{fig:disadvantages}.
+Figures~\ref{fig:advantages}~\&~\ref{fig:disadvantages}. See also, \emph{Where
+  are all the sleep (dis)advantages?}.
 
-\subsection{Sleep}
-\label{sec:sleep}
+% \subsection{Sleep} \label{sec:sleep}
+% TODO make tcolorboxes for this document
+% TODO decide if I want this floating or not.
+% TODO figure out how to reference tcolorboxes
+\begin{figure}[b]
+  \centering
+  \begin{tcolorbox}[title={Where are the sleep (dis)advantages?}]
+    The eagle-eyed player will notice there are no (dis)advantages for sleep.
+    Sleep can be difficult to track and often has pseudo-permenant effects that
+    don't affect gameplay enough to justify their points.
 
-The eagle-eyed player will notice there are no (dis)advantages for sleep. Sleep
-can be difficult to track and often has pseudo-permenant effects that don't
-affect gameplay enough to justify their points.
-
-Players can buy any sleep related (dis)advantages as quirks for +1/-1 points for
-advantages/disadvantages respectively, ignoring any effect that lasts longer
-than a few seconds.
+    Players can buy any sleep related (dis)advantages as quirks for +1/-1 points for
+    advantages/disadvantages respectively, ignoring any effect that lasts longer
+    than a few seconds.
+    
+  \end{tcolorbox}
+\end{figure}
 
 
 \begin{traitlist}[List of recomended advantages.][fig:advantages]
@@ -142,8 +151,10 @@ than a few seconds.
 \traititem{Ambidexterity}{5}{39}
 % \traititem{Amphibious}{10}{40} \traititem{Animal Empathy}{5}{40}
 % \traititem{Animal Friend}{5/level}{90}
-\traititem{Appearance}{Variable}{21} \traititem{Arm DX}{12 or 16/level}{40}
-\traititem{Arm ST}{3, 5, or 8/level}{40} \traititem{Artificer}{10/level}{90}
+\traititem{Appearance}{Variable}{21}
+% \traititem{Arm DX}{12 or 16/level}{40}
+% \traititem{Arm ST}{3, 5, or 8/level}{40}
+\traititem{Artificer}{10/level}{90}
 % \traititem{Autotrance}{1}{101}
 % \traititem{Binding}{2/level}{40} \traititem{Blessed}{10+}{40}
 % \traititem{Brachiator}{5}{41} \traititem{Breath-Holding}{2/level}{41}
@@ -232,7 +243,7 @@ than a few seconds.
 \traititem{Legal Enforcement Powers}{5, 10, or 15}{65}
 \traititem{Legal Immunity}{5 to 20}{65}
 % \traititem{Less Sleep}{2/level}{65}
-\traititem{Lifting ST}{3/level}{65}
+% \traititem{Lifting ST}{3/level}{65}
 \traititem{Lightning Calculator}{2}{66}
 % \traititem{Longevity}{2}{66}
 \traititem{Luck}{Variable}{66}
@@ -538,10 +549,21 @@ than a few seconds.
   % \traititem{Workaholic}{-5}{162}
   \traititem{Wounded}{-5}{162}
   % \traititem{Xenophilia}{-10*}{163}
-\end{traitlist}
 \footnotetext[1]{Inadvisable. Difficult to reason why a character would join a
   hitman team.}
+\end{traitlist}
+
+\section{Skills}
+\label{sec:skills}
+
+Skills will be recommended on an individual character basis as needed.
   
+\section{Tech Level}
+\label{sec:tech-level}
+
+This campaign is roughly TL10. Alien artifacts (if any are found) are either
+inert (i.e.~are basically nice sculptures) or TL0+12\^{} (i.e.~not based on
+earth tech trees in any way and TL12 requiring superscience).
 
 \section{Wealth/money}
 Capitalism has worked! Innovation is high and prices are low. Low enough that 
@@ -559,15 +581,16 @@ To keep things simple, all weapons have a \textbf{base} which can be modified
 with one or more \textbf{modules}. The following are the bases for common 
 weapons
 
-\begin{tabular}{c}
-Rifle (cordite) \\
-Pistol (cordite) \\
-Rifle (laser) \\
-Pistol (laser) \\
-Shortsword \\
-Knife 
-\end{tabular}
-
+\begin{center}
+  \begin{tabular}{cc}
+    Rifle (cordite)  & 6d(pi)\\
+    Pistol (cordite) & 3d(pi)\\
+    Rifle (laser)    & 6d(pi-\null-)\\
+    Pistol (laser)   & 3d(pi-\null-)\\
+    Shortsword       & sw+2(cut)/thr+1(imp)\\
+    Knife            & sw-2(cut)/thr+1(imp)\\
+  \end{tabular}
+\end{center}
 \part{GM's cubby corner}
 \label{part:gms-cubby-corner}
 
