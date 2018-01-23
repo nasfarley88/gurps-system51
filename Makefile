@@ -1,7 +1,7 @@
-all: main.pdf
+all: main.pdf system51-player-guide.pdf
 
-main.pdf: *.tex
-	latexmk -interaction=nonstopmode -lualatex -use-make main.tex
+%.pdf: *.tex
+	latexmk -interaction=nonstopmode -lualatex -use-make $(basename $@).tex
 
 clean:
 	latexmk -CA
