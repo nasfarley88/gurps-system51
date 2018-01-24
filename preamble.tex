@@ -1,0 +1,49 @@
+\documentclass[a4paper,twocolumn,oneside]{memoir}
+
+\usepackage{gurps}
+\usepackage{luacode}
+\usepackage{libertine}
+\usepackage{microtype}
+\usepackage{xparse}
+\usepackage{multicol}
+\usepackage{paralist}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usetikzlibrary{calc}
+\usepackage{tcolorbox}
+\usepackage{transparent}
+\renewcommand{\familydefault}{\sfdefault}
+
+\graphicspath{{images/}}
+
+\setulmarginsandblock{1.5cm}{1.5cm}{*}
+\setlrmarginsandblock{1.5cm}{1.5cm}{*}
+\checkandfixthelayout
+
+\setsecnumdepth{subsubsection}
+
+% Useful macros
+\NewDocumentCommand{\system}{m}{\textsc{System#1}}
+\NewDocumentCommand{\player}{m}{\textbf{\mbox{#1}}}
+
+\NewDocumentCommand{\traititem}{smmm}{\item #2[#3] p.~#4}
+\NewDocumentEnvironment{traitlist}{O{List of traits.}o}%
+{\begin{figure*}
+    \begin{minipage}{1.0\linewidth}
+      \begin{multicols}{3}
+        \begin{compactitem}}%
+        {\end{compactitem}
+      \end{multicols}
+    \end{minipage}
+    \caption{#1}
+    \IfValueTF{#2}{\label{#2}}{}
+  \end{figure*}}
+
+
+\title{\system{51} source book}
+\author{Nathanael~Farley, David~Sumner, et al.}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "main"
+%%% End:
