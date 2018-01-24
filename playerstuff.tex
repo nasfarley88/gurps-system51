@@ -34,8 +34,8 @@
 \chapter{Setting}
 \label{cha:history}
 
-\section{Map}
-\label{sec:map}
+\section{Galaxy map}
+\label{sec:galaxy-map}
 
 The map of the galaxy as it currently stands can be found at \autoref{fig:mapofthegalaxy}.
 
@@ -51,6 +51,65 @@ The map of the galaxy as it currently stands can be found at \autoref{fig:mapoft
     \url{http://www.enderra.com/2012/02/01/milky-galaxy-black-white/},
     annotations added.}
   \label{fig:mapofthegalaxy}
+\end{figure*}
+
+\section{\system{51} map}
+\label{sec:system51-map}
+
+% \NewDocumentCommand{\systembaseradius}{}{10}
+\NewDocumentCommand{\systemarc}{O{8}mO{}}{
+    \pgfmathsetmacro{\angleone}{90+asin(#1/#2)};
+    \pgfmathsetmacro{\angletwo}{90-asin(#1/#2)};
+    \pgfmathsetmacro{\systembaseradius}{10};
+    \draw (-#1, {#2-\systembaseradius}) arc (\angleone:\angletwo:#2) #3;
+}
+
+\begin{figure*}
+  \centering
+  \begin{tikzpicture}
+    % OK, let's start at the bottom with a sun.
+    \pgfmathsetmacro{\halfwidth}{8}
+    % \pgfmathsetmacro{\leftedge}{-5};
+    % \pgfmathsetmacro{\rightedge}{5};
+    \pgfmathsetmacro{\radius}{10};
+
+    \node (origin) at (0,-\radius) {origin};
+    \node (sunleft) at (-\halfwidth, 0) {(-\halfwidth, 0)};
+    \node (sunright) at (\halfwidth, 0) {(\halfwidth, 0)};
+
+    \systemarc{15}[coordinate[midway] (sun)];
+    \systemarc{22}[coordinate[midway] (firstplanet)];
+    \systemarc{25}[coordinate [midway] (secondplanet)];
+    \systemarc{30}[coordinate [midway] (thirdplanet)];
+    \systemarc{36}[coordinate [midway] (fourthplanet)];
+    \systemarc{39}[coordinate [midway] (fifthplanet)];
+
+    \filldraw (firstplanet) circle (2mm);
+    \filldraw (secondplanet) circle (3mm);
+    \filldraw (thirdplanet) circle (5mm);
+    \filldraw (fourthplanet) circle (2mm);
+    \filldraw (fifthplanet) circle (4mm);
+
+    \filldraw (fourthplanet) ++ (.3,.3) circle (1mm);
+
+    \node[above = of sun] (sundescription) {\textsc{Sun}};
+
+    \node[below right = 2cm and 4cm of firstplanet] (firstplanetdescription)  {The first planet};
+    \draw (firstplanet) to[galaxy line] (firstplanetdescription);
+
+    \node[above left = 2cm and 4cm of secondplanet] (secondplanetdescription)  {The second planet};
+    \draw (secondplanet) to[galaxy line] (secondplanetdescription);
+
+    \node[above left = 2cm and 4cm of thirdplanet] (thirdplanetdescription)  {The third planet};
+    \draw (thirdplanet) to[galaxy line] (thirdplanetdescription);
+
+    \node[below right = 2cm and 4cm of fourthplanet] (fourthplanetdescription)  {The fourth planet and it's moon};
+    \draw (fourthplanet) to[galaxy line] (fourthplanetdescription);
+
+    \node[above right = 2cm and 4cm of fifthplanet] (fifthplanetdescription)  {The fifth planet};
+    \draw (fifthplanet) to[galaxy line] (fifthplanetdescription);
+
+  \end{tikzpicture}
 \end{figure*}
 
 \section{Nanite wars}
