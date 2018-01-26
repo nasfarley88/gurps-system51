@@ -9,7 +9,6 @@
 \usepackage{multicol}
 \usepackage{paralist}
 \usepackage{graphicx}
-\usepackage{changebar}          % for custom proposal environment
 \usepackage{tikz}
 \usetikzlibrary{calc,intersections,angles,positioning}
 \usepackage{tcolorbox}
@@ -47,14 +46,13 @@
 \NewDocumentCommand{\listproposalsname}{}{List of proposals}
 \newlistof{listofproposals}{pro}{\listproposalsname}
 \NewDocumentEnvironment{proposal}{m}{%
-  \begin{changebar}
   \refstepcounter{proposals}
   \addcontentsline{pro}{proposals}{#1}
-  \textbf{Proposal \theproposals: #1}\par
+  \noindent
+  \textbf{Proposal \theproposals: #1}\hrulefill\par
 }{%
   \par\noindent%
-  \textbf{End of proposal}%
-  \end{changebar}%
+  \textbf{End of proposal}\hrulefill%
 }
 
 
