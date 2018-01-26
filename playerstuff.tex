@@ -691,6 +691,7 @@ to each character (analgous to CP) and build weapons based on their preferences.
 
 E.g.
 
+\newpage
 \begin{innateattack}
   \item A cordite based rifle should have \(\sim\)\dice{6} damage
   \item We make it \InnateAttackLevel{6} to up the damage to \dice{6}.
@@ -698,19 +699,22 @@ E.g.
   \item Innate attack (pi) is at \InnateAttackPointsPerLevel{5}
   \item A single level of ranged innate attack provides: 1/2D 10, Max 100, Acc
     3, RoF 1, Shots N/A and Recoil 1 and \dice{1} of damage
-  \item Range multiple ×5 adds \InnateAttackPercentModifier{20}
+  \item Range multiple ×5 adds \InnateAttackPercentModifier[Range multiple ×5]{20}
   \item Reloading means using Limited Use which doesn't list >10 uses per day as
     a `significant' limitation. But let's say it is and add
-    \InnateAttackPercentModifier{-5}
+    \InnateAttackPercentModifier[Limited Use (15 times w/fast reload)]{-5}
     for 15 uses with Fast Reload
   \item This means that for a rifle which has a clip of 15 and damage of
     \dice{6} and a 1/2D of 50 yards, it would cost
     \InnateAttackTotalPoints.
   \item (If we were to decide this rifle could have a RoF 3, this would at
-    \InnateAttackPercentModifier{50} and raise the points cost to
+    \InnateAttackPercentModifier[RoF 3]{50} and raise the points cost to
     \InnateAttackTotalPoints.)
 \end{innateattack}
 
+\begin{center}
+  \InnateAttackBreakdown
+\end{center}
 \chapter{\gurps adaptions}
 \label{cha:gurps-adaptions}
 

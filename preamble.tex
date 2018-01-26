@@ -94,6 +94,27 @@
     tex.sprint(tostring(math.ceil(r)))
   }~points\xspace%
 }
+\NewDocumentCommand{\InnateAttackBreakdown}{}{
+  \newcommand\pc{\%\xspace}
+  \begin{tabular}{lc}
+    \hline
+    Reason & Modifier \\\hline
+    \luaexec{
+      _pcmodifier = 0
+      tex.sprint("(Level &" .. _INNATE_ATTACK.level .. [[)\\]])
+      tex.sprint("Points/level & ×" .. _INNATE_ATTACK.pointsPerLevel .. [[\\]])
+      for i,j in pairs(_INNATE_ATTACK.percentModifiers) do
+        if j.value < 0 then
+          tex.sprint(j.reason .. [[&]] .. math.floor(j.value*100) .. [[\string\pc \\]])
+        else
+          tex.sprint(j.reason .. [[& +]] .. math.floor(j.value*100) .. [[\string\pc \\]])
+        end
+        _pcmodifier = _pcmodifier + j.value*100
+      end
+    }\hline
+    Total & \InnateAttackTotalPoints \\\hline
+  \end{tabular}
+}
 \makeatother%
 
 \NewDocumentEnvironment{innateattack}{}{%
