@@ -9,6 +9,7 @@
 \usepackage{multicol}
 \usepackage{paralist}
 \usepackage{graphicx}
+\usepackage{changebar}          % for custom proposal environment
 \usepackage{tikz}
 \usetikzlibrary{calc,intersections,angles,positioning}
 \usepackage{tcolorbox}
@@ -41,6 +42,67 @@
     \IfValueTF{#2}{\label{#2}}{}
   \end{figure*}}
 
+
+\newcounter{proposals}
+\NewDocumentCommand{\listproposalsname}{}{List of proposals}
+\newlistof{listofproposals}{pro}{\listproposalsname}
+\NewDocumentEnvironment{proposal}{m}{%
+  \begin{changebar}
+  \refstepcounter{proposals}
+  \addcontentsline{pro}{proposals}{#1}
+  \textbf{Proposal \theproposals: #1}\par
+}{%
+  \par\noindent%
+  \textbf{End of proposal}%
+  \end{changebar}%
+}
+
+
+\makeatletter%
+\NewDocumentCommand{\InnateAttackPointsPerLevel}{m}{%
+  \luadirect{_INNATE_ATTACK.pointsPerLevel = #1}%
+  #1~points/level\xspace%
+}
+\NewDocumentCommand{\InnateAttackLevel}{m}{%
+  \luadirect{_INNATE_ATTACK.level = #1}%
+  level~#1\xspace%
+}
+
+% \newcommand{\gurps@innateattack@percentmodifiers}{0.0}%
+\NewDocumentCommand{\InnateAttackPercentModifier}{O{}m}{%
+  \luadirect{table.insert(_INNATE_ATTACK.percentModifiers, {
+      reason=[[#1]],
+      value=#2/100
+    })}%
+  % \pgfmathsetmacro{\gurps@innateattack@currentpercentmodifier}{#1/100}
+  % \let\oldgurps@innateattack@percentmodifiers\gurps@innateattack@percentmodifiers
+  % \renewcommand{\gurps@innateattack@percentmodifiers}{%
+  %   \oldgurps@innateattack@percentmodifiers, %
+  %   \gurps@innateattack@currentpercentmodifier}%
+  % \gurps@innateattack@currentpercentmodifier\% (\gurps@innateattack@percentmodifiers)%
+  #2\%\xspace%
+}
+
+\NewDocumentCommand{\InnateAttackTotalPoints}{}{%
+  \luadirect{
+    r = _INNATE_ATTACK.level*_INNATE_ATTACK.pointsPerLevel
+    percentModifier = 1
+    for i,j in pairs(_INNATE_ATTACK.percentModifiers) do
+      percentModifier = percentModifier+j.value
+    end
+    r = r*percentModifier
+    tex.sprint(tostring(math.ceil(r)))
+  }~points\xspace%
+}
+\makeatother%
+
+\NewDocumentEnvironment{innateattack}{}{%
+  \luadirect{_INNATE_ATTACK = {
+      level=0,
+      pointsPerLevel=0,
+      percentModifiers={}
+    }}%
+  \begin{itemize}}{\end{itemize}}
 
 \title{\system{51} source book}
 \author{Nathanael~Farley, David~Sumner, et al.}

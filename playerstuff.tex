@@ -28,6 +28,10 @@
   \draw (\tmpfrom) to[galaxy line] (\tmpto);
 }
 
+
+
+\listofproposals
+
 \chapter{Setting}
 \label{cha:history}
 
@@ -666,13 +670,46 @@ weapons
   \begin{tabular}{cc}
     Rifle (cordite)  & 6d(pi)\\
     Pistol (cordite) & 3d(pi)\\
-    Rifle (laser)    & 6d(pi-\null-)\\
-    Pistol (laser)   & 3d(pi-\null-)\\
+    Rifle (laser)    & 6d(pi-)\\
+    Pistol (laser)   & 3d(pi-)\\
     Shortsword       & sw+2(cut)/thr+1(imp)\\
     Knife            & sw-2(cut)/thr+1(imp)\\
   \end{tabular}
 \end{center}
 
+\subsubsection{Nitty gritty}
+\label{sec:nitty-gritty}
+
+\begin{tcolorbox}[title={Warning}]
+  This section is for people who \emph{like} to mess with \gurps. It is not
+  required to understand for gameplay.
+\end{tcolorbox}
+
+Weapons will be modelled after the Innate Attack advantage such that each player
+will have weapons of roughly equal power. The GM will assign Weapon Points (WP)
+to each character (analgous to CP) and build weapons based on their preferences.
+
+E.g.
+
+\begin{innateattack}
+  \item A cordite based rifle should have \(\sim\)\dice{6} damage
+  \item We make it \InnateAttackLevel{6} to up the damage to \dice{6}.
+  \item Rifles have piercing damage
+  \item Innate attack (pi) is at \InnateAttackPointsPerLevel{5}
+  \item A single level of ranged innate attack provides: 1/2D 10, Max 100, Acc
+    3, RoF 1, Shots N/A and Recoil 1 and \dice{1} of damage
+  \item Range multiple ×5 adds \InnateAttackPercentModifier{20}
+  \item Reloading means using Limited Use which doesn't list >10 uses per day as
+    a `significant' limitation. But let's say it is and add
+    \InnateAttackPercentModifier{-5}
+    for 15 uses with Fast Reload
+  \item This means that for a rifle which has a clip of 15 and damage of
+    \dice{6} and a 1/2D of 50 yards, it would cost
+    \InnateAttackTotalPoints.
+  \item (If we were to decide this rifle could have a RoF 3, this would at
+    \InnateAttackPercentModifier{50} and raise the points cost to
+    \InnateAttackTotalPoints.)
+\end{innateattack}
 
 \chapter{\gurps adaptions}
 \label{cha:gurps-adaptions}
@@ -722,29 +759,32 @@ dramatic!)
 \section{Stuff}
 \label{sec:stuff}
 
-\textbf{Proposed:} During play, PCs are expected to keep track of their
-inventory. During obvious rest stops (e.g.~at base, talking about a plan, not in
-prison) the PCs can buy anything they need from local sources.
+\begin{proposal}{Inventory management}
+  Players keep track of their own inventory. During obvious rest stops (e.g.~at
+  base, talking about a plan, not in prison) the PCs can usually source anything
+  they need from local sources.
 
-In \system{51}, all cash transactions are monitored by central banks and are
-therefore traceable. This means that important items are often not for direct
-sale may need to be bartered for.
+  In \system{51}, all cash transactions are monitored by central banks and are
+  therefore traceable. This means that important items are often not for direct
+  sale may need to be bartered for.
 
-\begin{tcolorbox}[title={What about cash?}]
-  The PCs are well funded operatives of \thecompany and generally only need to
-  ask for funds to be electronically transferred for a job to get it. As such,
-  players can basically ignore cash flow problems.
-\end{tcolorbox}
+  \begin{tcolorbox}[title={What about cash?}]
+    The PCs are well funded operatives of \thecompany and generally only need to
+    ask for funds to be electronically transferred for a job to get it. As such,
+    players can basically ignore cash flow problems.
+  \end{tcolorbox}
+\end{proposal}
 
 
 
 \subsection{Ammo}
 \label{sec:ammo}
 
-All character have infinite ammo on them but still need to reload their weapon.
-\emph{For the purposes of weight only} each player has ×5 clips/batteries on
-them at all times.
-
+\begin{proposal}{Infinite ammo but require reloads}
+  All character have infinite ammo on them but still need to reload their
+  weapon. \emph{For the purposes of weight only} each player has ×5
+  clips/batteries on them at all times.
+\end{proposal}
 
 %%% Local Variables:
 %%% mode: latex
