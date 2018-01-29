@@ -35,13 +35,14 @@
   \item #2[#3] p.~#4%
   }%
 }
-\NewDocumentEnvironment{traitlist}{O{List of traits.}o}%
+\NewDocumentEnvironment{traitlist}{O{List of traits.}oO{}}%
 {\begin{figure*}
     \begin{minipage}{1.0\linewidth}
       \begin{multicols}{3}
         \begin{compactitem}}%
         {\end{compactitem}
       \end{multicols}
+      #3
     \end{minipage}
     \caption{#1}
     \IfValueTF{#2}{\label{#2}}{}
@@ -122,6 +123,9 @@
       percentModifiers={}
     }}%
   \begin{itemize}}{\end{itemize}}
+
+\NewDocumentCommand{\fakefootnotemark}{m}{\textsuperscript{#1}}
+\NewDocumentCommand{\fakefootnotetext}{mm}{{\textsuperscript{#1}~{\footnotesize #2}}}
 
 \title{\system{51} source book}
 \author{Nathanael~Farley, David~Sumner, et al.}
