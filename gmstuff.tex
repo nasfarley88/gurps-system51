@@ -98,6 +98,33 @@ an entire challenge.
 
 As Google Doc.
 
+
+\chapter{Reusable NPCs}
+\label{cha:reusable-npcs}
+
+\section{Armed mook}
+\label{sec:armed-mook}
+
+Simple enough. Use this template for any NPC who is prepared for a fight but
+the GM hasn't prepared them for it. They will die quickly and will probably
+immediately fail any HT roll for falling unconcious/dying.
+
+They have the following weapon:
+\begin{innateattack}
+  \item Needs \dice{3} of damage so make it \InnateAttackLevel{3}
+  \item Attack type pi means \InnateAttackPointsPerLevel{5}
+  \item No point in extending the range (can assume infinite, won't be shooting
+    far anyway!)
+  \item That makes this weapon \InnateAttackTotalPoints.
+\end{innateattack}
+
+\begin{character}
+  \skill{Brawling}[DX/Easy]{10}
+  \DR{5}
+  \advantage{Innate Attack (pistol, \dice{3}, pi)}[15]
+  \skill{`Innate' Attack (pistol)}{10}
+\end{character}
+
 %%% Local Variables:
 %%% mode: latex
 %%% TeX-master: "main"

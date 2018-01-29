@@ -28,7 +28,13 @@
 \NewDocumentCommand{\player}{m}{\textbf{\mbox{#1}}}
 \NewDocumentCommand{\thecompany}{}{\textbf{The Company}\xspace}
 
-\NewDocumentCommand{\traititem}{smmm}{\item #2[#3] p.~#4}
+\NewDocumentCommand{\traititem}{smmm}{%
+  \IfBooleanTF{#1}{             %starred
+  \item \textbf{#2}[#3] p.~#4%
+  }{                            %unstarred
+  \item #2[#3] p.~#4%
+  }%
+}
 \NewDocumentEnvironment{traitlist}{O{List of traits.}o}%
 {\begin{figure*}
     \begin{minipage}{1.0\linewidth}
@@ -72,12 +78,6 @@
       reason=[[#1]],
       value=#2/100
     })}%
-  % \pgfmathsetmacro{\gurps@innateattack@currentpercentmodifier}{#1/100}
-  % \let\oldgurps@innateattack@percentmodifiers\gurps@innateattack@percentmodifiers
-  % \renewcommand{\gurps@innateattack@percentmodifiers}{%
-  %   \oldgurps@innateattack@percentmodifiers, %
-  %   \gurps@innateattack@currentpercentmodifier}%
-  % \gurps@innateattack@currentpercentmodifier\% (\gurps@innateattack@percentmodifiers)%
   #2\%\xspace%
 }
 
