@@ -125,6 +125,76 @@ They have the following weapon:
   \skill{`Innate' Attack (pistol)}{10}
 \end{character}
 
+\chapter{Weapons}
+\label{cha:weapons}
+
+\section{Cordite pistol}
+\label{sec:cordite-pistol}
+
+Assumes a cordite pistol with \dice{3} damage
+
+\begin{innateattack}
+  \item Cordite pistols are pi damage so \InnateAttackPointsPerLevel{5} with
+    \dice{3} damage for \InnateAttackLevel{3}.
+  \item Clip of 10 means \InnateAttackPercentModifier{-10} with Limited Use
+  \item Recoil is pretty bad for the base (Rcl 3) so
+    \InnateAttackPercentModifier{-20}
+  \item Accuracy needs taking down a little to 2 (so that rifles are more
+    accurate than pistols) so \InnateAttackPercentModifier{-5}
+  \item It's \emph{loud} which means a single level of Nuisance Effect at
+    \InnateAttackPercentModifier{-5}
+  \item This means the cordite pistol is worth \InnateAttackTotalPoints{}
+\end{innateattack}
+
+\section{Cordite rifle}
+\label{sec:cordite-rifle}
+
+Assumes a cordite rifle with \dice{6} damage
+
+\begin{innateattack}
+  \item Cordite rifles are pi damage so \InnateAttackPointsPerLevel{5} with
+    \dice{6} damage for \InnateAttackLevel{6}.
+  \item Clip of 15 means Limited Use but no modifiers
+  \item Recoil is OK for the base (Rcl 2) so \InnateAttackPercentModifier{-10}
+  \item Accuracy at 3 is fine
+  \item It's \emph{loud} which means a single level of Nuisance Effect at
+    \InnateAttackPercentModifier{-5}
+  \item This means the cordite rifle is worth \InnateAttackTotalPoints{}
+\end{innateattack}
+
+
+\section{Laser pistol}
+\label{sec:laser-pistol}
+
+Assumes a laser pistol with same point spend as cordite pistol but more damage
+
+\begin{innateattack}
+  \item Laser pistols are pi- damage so \InnateAttackPointsPerLevel{3} with
+    \dice{3} damage for \InnateAttackLevel{3}.
+  \item Clip is effectively unlimited
+  \item Recoil is 1
+  \item Accuracy needs taking down a little to 2 (so that rifles are more
+    accurate than pistols) so \InnateAttackPercentModifier{-5}
+  \item It's silent
+  \item This means the laser pistol is worth \InnateAttackTotalPoints{}
+\end{innateattack}
+
+
+\section{Laser rifle}
+\label{sec:laser-rifle}
+
+Assumes a laser rifle matches points spend with cordite rifle, but has more damage
+
+\begin{innateattack}
+  \item Laser rifles are pi- damage so \InnateAttackPointsPerLevel{3} with
+    \dice{9} damage for \InnateAttackLevel{9}.
+  \item Clip is effectively unlimited (>200 shots)
+  \item Recoil is 1 so no modification
+  \item Accuracy at 3 is fine
+  \item It's silent
+  \item This means the laser rifle is worth \InnateAttackTotalPoints{}
+\end{innateattack}
+
 %%% Local Variables:
 %%% mode: latex
 %%% TeX-master: "main"
