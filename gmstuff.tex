@@ -133,25 +133,40 @@ They have the following weapon:
 
 Assumes a cordite pistol with \dice{3} damage
 
-\begin{innateattack}
+\begin{innateattack}[cordite pistol]
   \item Cordite pistols are pi damage so \InnateAttackPointsPerLevel{5} with
     \dice{3} damage for \InnateAttackLevel{3}.
-  \item Clip of 10 means \InnateAttackPercentModifier{-10} with Limited Use
+  \item Clip of 10 means \InnateAttackPercentModifier[Clip of 10]{-10} with Limited Use
   \item Recoil is pretty bad for the base (Rcl 3) so
-    \InnateAttackPercentModifier{-20}
+    \InnateAttackPercentModifier[Recoil 3]{-20}
   \item Accuracy needs taking down a little to 2 (so that rifles are more
-    accurate than pistols) so \InnateAttackPercentModifier{-5}
+    accurate than pistols) so \InnateAttackPercentModifier[Accuracy 2]{-5}
   \item It's \emph{loud} which means a single level of Nuisance Effect at
-    \InnateAttackPercentModifier{-5}
+    \InnateAttackPercentModifier[Nuicanse (noise)]{-5}
   \item This means the cordite pistol is worth \InnateAttackTotalPoints{}
 \end{innateattack}
+
+\InnateAttackBreakdown{}
+
+\section{Silenced cordite pistol}
+\label{sec:silenc-cord-pist}
+
+\begin{innateattack}[silenced cordite pistol]
+  \item This is \InnateAttackBasedOn{cordite pistol}
+  \item Silencing removes the noisy Nuisance effect so
+    \InnateAttackRemovePercentModifier{Nuicanse (noise)}
+  \item This means the silenced cordite pistol is worth
+    \InnateAttackTotalPoints{}
+\end{innateattack}
+
+\InnateAttackBreakdown{}
 
 \section{Cordite rifle}
 \label{sec:cordite-rifle}
 
 Assumes a cordite rifle with \dice{6} damage
 
-\begin{innateattack}
+\begin{innateattack}[cordite rifle]
   \item Cordite rifles are pi damage so \InnateAttackPointsPerLevel{5} with
     \dice{6} damage for \InnateAttackLevel{6}.
   \item Clip of 15 means Limited Use but no modifiers
@@ -168,7 +183,7 @@ Assumes a cordite rifle with \dice{6} damage
 
 Assumes a laser pistol with same point spend as cordite pistol but more damage
 
-\begin{innateattack}
+\begin{innateattack}[laser pistol]
   \item Laser pistols are pi- damage so \InnateAttackPointsPerLevel{3} with
     \dice{3} damage for \InnateAttackLevel{3}.
   \item Clip is effectively unlimited
@@ -185,7 +200,7 @@ Assumes a laser pistol with same point spend as cordite pistol but more damage
 
 Assumes a laser rifle matches points spend with cordite rifle, but has more damage
 
-\begin{innateattack}
+\begin{innateattack}[laser rifle]
   \item Laser rifles are pi- damage so \InnateAttackPointsPerLevel{3} with
     \dice{9} damage for \InnateAttackLevel{9}.
   \item Clip is effectively unlimited (>200 shots)

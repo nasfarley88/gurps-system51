@@ -3,6 +3,7 @@
 \usepackage[british]{babel}
 \usepackage{gurps}
 \usepackage{luacode}
+\luadirect{require("main.lua")}
 \usepackage{libertine}
 \usepackage{microtype}
 \usepackage{xparse}
@@ -65,59 +66,107 @@
 
 \makeatletter%
 \NewDocumentCommand{\InnateAttackPointsPerLevel}{m}{%
-  \luadirect{_INNATE_ATTACK.pointsPerLevel = #1}%
+  \luadirect{ia.setPointsPerLevel(_INNATE_ATTACK[_INNATE_ATTACK_KEY], #1)}%
   #1~points/level\xspace%
 }
 \NewDocumentCommand{\InnateAttackLevel}{m}{%
-  \luadirect{_INNATE_ATTACK.level = #1}%
+  \luadirect{ia.setLevel(_INNATE_ATTACK[_INNATE_ATTACK_KEY], #1)}%
   level~#1\xspace%
 }
 
-% \newcommand{\gurps@innateattack@percentmodifiers}{0.0}%
 \NewDocumentCommand{\InnateAttackPercentModifier}{O{}m}{%
-  \luadirect{table.insert(_INNATE_ATTACK.percentModifiers, {
-      reason=[[#1]],
-      value=#2/100
-    })}%
+  \luadirect{
+    pcmod = ia.createPercentModifier(#2/100, [[#1]])
+    ia.insertPercentModifier(_INNATE_ATTACK[_INNATE_ATTACK_KEY], pcmod)
+  }%
   #2\%\xspace%
 }
 
-\NewDocumentCommand{\InnateAttackTotalPoints}{}{%
-  \luadirect{
-    r = _INNATE_ATTACK.level*_INNATE_ATTACK.pointsPerLevel
-    percentModifier = 1
-    for i,j in pairs(_INNATE_ATTACK.percentModifiers) do
-      percentModifier = percentModifier+j.value
-    end
-    r = r*percentModifier
-    tex.sprint(tostring(math.ceil(r)))
-  }~points\xspace%
+\NewDocumentCommand{\InnateAttackFormatPercentModifier}{som}{%
+  \IfBooleanTF{#1}{
+    \pgfmathparse{int(round(#3*100))}\pgfmathresult\%\IfValueTF{#2}{~#2}{}%
+  }{
+    #3\%\IfValueTF{#2}{~#2}{}%
+  }%
 }
+
+\NewDocumentCommand{\InnateAttackRemovePercentModifier}{m}{%
+  \footnote{Currently have:
+    \luadirect{for i,v in ipairs(_INNATE_ATTACK[_INNATE_ATTACK_KEY].percentModifiers) do
+      tex.sprint(v.reason .. ",") end} but trying to remove #1.
+  }%
+  \luadirect{
+    ia.removePercentModifier(_INNATE_ATTACK[_INNATE_ATTACK_KEY], [[#1]])
+  }%
+  \footnote{Now have:
+    \luadirect{for i,v in ipairs(_INNATE_ATTACK[_INNATE_ATTACK_KEY].percentModifiers) do
+      tex.sprint(v.reason .. ",") end} and tried to remove #1.
+  }%
+  % #2\%\xspace%
+}
+
+\NewDocumentCommand{\gurps@ia@totalpoints}{o}{%
+  \IfValueTF{#1}{\luadirect{
+      tex.sprint(tostring(ia.getTotalPoints(_INNATE_ATTACK[ [[#1]] ])))
+    }}{\luadirect{
+      tex.sprint(tostring(ia.getTotalPoints(_INNATE_ATTACK[_INNATE_ATTACK_KEY])))
+    }}
+}
+
+\NewDocumentCommand{\InnateAttackTotalPoints}{}{%
+  \gurps@ia@totalpoints~points\xspace%
+}
+
+
+\NewDocumentCommand{\gurps@pc}{}{\%\xspace}
+
+% Takes a real percentage and converts it to LaTeX (e.g. 0.1 -> +10%)
+% TODO make the above true!
+\NewDocumentCommand{\gurps@format@pcmod}{m}{\luadirect{
+    if #1 > 0 then
+      tex.sprint("+" .. math.floor(#1*100))
+    else
+      tex.sprint(math.floor(#1*100))
+    end
+  }\gurps@pc}
+
+
 \NewDocumentCommand{\InnateAttackBreakdown}{}{
-  \newcommand\pc{\%\xspace}
   \begin{tabular}{lc}
     \hline
     Reason & Modifier \\\hline
     \luaexec{
-      _pcmodifier = 0
-      tex.sprint("(Level &" .. _INNATE_ATTACK.level .. [[)\\]])
-      tex.sprint("Points/level & ×" .. _INNATE_ATTACK.pointsPerLevel .. [[\\]])
-      for i,j in pairs(_INNATE_ATTACK.percentModifiers) do
-        if j.value < 0 then
-          tex.sprint(j.reason .. [[&]] .. math.floor(j.value*100) .. [[\string\pc \\]])
-        else
-          tex.sprint(j.reason .. [[& +]] .. math.floor(j.value*100) .. [[\string\pc \\]])
-        end
-        _pcmodifier = _pcmodifier + j.value*100
+      % _pcmodifier = 0
+      currentIA = _INNATE_ATTACK[_INNATE_ATTACK_KEY]
+      tex.sprint("(Level &" .. currentIA.level .. [[)\\]])
+      tex.sprint("Points/level & ×" .. currentIA.pointsPerLevel .. [[\\]])
+      for i,j in ipairs(currentIA.percentModifiers) do
+      tex.sprint(j.reason .. [[& \string\InnateAttackFormatPercentModifier*{]] .. j.value .. [[} \\]])
+        % if j.value < 0 then
+        %   tex.sprint(j.reason .. [[&]] .. math.floor(j.value*100) .. [[\string\gurps@pc \\]])
+        % else
+        %   tex.sprint(j.reason .. [[& +]] .. math.floor(j.value*100) .. [[\string\gurps@pc \\]])
+        % end
+        % _pcmodifier = _pcmodifier + j.value*100
       end
     }\hline
     Total & \InnateAttackTotalPoints \\\hline
   \end{tabular}
 }
+
+\NewDocumentCommand{\InnateAttackBasedOn}{m}{%
+  \luadirect{
+    _INNATE_ATTACK[_INNATE_ATTACK_KEY] = deepcopy(_INNATE_ATTACK[ [[#1]] ])
+  }%
+  based on \mbox{#1}\footnote{but now called `\luadirect{tex.sprint(_INNATE_ATTACK_KEY)}'}\xspace%
+}
 \makeatother%
 
-\NewDocumentEnvironment{innateattack}{}{%
-  \luadirect{_INNATE_ATTACK = {
+\luadirect{_INNATE_ATTACK = {}}
+\NewDocumentEnvironment{innateattack}{O{_}}{%
+  \luadirect{
+    _INNATE_ATTACK_KEY = [[#1]]
+    _INNATE_ATTACK[_INNATE_ATTACK_KEY] = {
       level=0,
       pointsPerLevel=0,
       percentModifiers={}
