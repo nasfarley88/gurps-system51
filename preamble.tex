@@ -13,6 +13,7 @@
 \usetikzlibrary{calc,intersections,angles,positioning}
 \usepackage{tcolorbox}
 \usepackage{transparent}
+\usepackage{enumitem}
 
 \renewcommand{\familydefault}{\sfdefault}
 
@@ -56,8 +57,9 @@
 \NewDocumentEnvironment{traitlist}{O{List of traits.}oO{}}%
 {\begin{figure*}
     \begin{minipage}{1.0\linewidth}
+      \raggedright
       \begin{multicols}{3}
-        \begin{itemize}}%
+        \begin{itemize}[noitemsep]}%
         {\end{itemize}
       \end{multicols}
       #3
