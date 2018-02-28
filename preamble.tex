@@ -14,7 +14,37 @@
 \usetikzlibrary{calc,intersections,angles,positioning}
 \usepackage{tcolorbox}
 \usepackage{transparent}
+
+\usepackage{xassoccnt}
+
+\NewTotalDocumentCounter{totalrealpage}
+\NewDocumentCounter{realpage}
+
+\DeclareAssociatedCounters{page}{realpage,totalrealpage}
+\makeatletter
+\AtBeginDocument{%
+  \setcounter{realpage}{1}
+}
+
+
 \renewcommand{\familydefault}{\sfdefault}
+
+\tikzset{
+  galaxy line/.style={
+    to path={
+      let \p{start}=(\tikztostart), \p{target}=(\tikztotarget),
+      \p{inter}=({\x{start} + sign(\x{target}-\x{start}) * abs(\y{target}-\y{start})}, \y{target})
+      in -- (\p{inter}) -- (\tikztotarget)
+    },
+  },
+}
+\tikzset{
+  pics/carc/.style args={#1:#2:#3}{
+    code={
+      \draw[pic actions] (#1:#3) arc(#1:#2:#3);
+    }
+  }
+}
 
 \graphicspath{{images/}}
 
@@ -136,21 +166,17 @@
     \hline
     Reason & Modifier \\\hline
     \luaexec{
-      % _pcmodifier = 0
       currentIA = _INNATE_ATTACK[_INNATE_ATTACK_KEY]
       tex.sprint("(Level &" .. currentIA.level .. [[)\\]])
       tex.sprint("Points/level & ×" .. currentIA.pointsPerLevel .. [[\\]])
       for i,j in ipairs(currentIA.percentModifiers) do
       tex.sprint(j.reason .. [[& \string\InnateAttackFormatPercentModifier*{]] .. j.value .. [[} \\]])
-        % if j.value < 0 then
-        %   tex.sprint(j.reason .. [[&]] .. math.floor(j.value*100) .. [[\string\gurps@pc \\]])
-        % else
-        %   tex.sprint(j.reason .. [[& +]] .. math.floor(j.value*100) .. [[\string\gurps@pc \\]])
-        % end
-        % _pcmodifier = _pcmodifier + j.value*100
       end
     }\hline
-    Total & \InnateAttackTotalPoints \\\hline
+    Total & \(\lceil\)\luadirect{tex.sprint(ia.getAdjustedPointsPerLevel(_INNATE_ATTACK[_INNATE_ATTACK_KEY]))}%
+            ×%
+            \luadirect{tex.sprint(_INNATE_ATTACK[_INNATE_ATTACK_KEY].level)}\(\rceil\)%
+            = \InnateAttackTotalPoints \\\hline
   \end{tabular}
 }
 
@@ -175,6 +201,48 @@
 
 \NewDocumentCommand{\fakefootnotemark}{m}{\textsuperscript{#1}}
 \NewDocumentCommand{\fakefootnotetext}{mm}{{\textsuperscript{#1}~{\footnotesize #2}}}
+
+
+\newcommand\dodec[1]{{90+(30*(#1-1)}}
+
+\NewDocumentCommand{\one}{}{%
+  \draw[white] (0,0) circle (0pt) pic[black]{carc=\dodec{2}:\dodec{7}:6pt};%
+  \draw[white] (0,0) circle (0pt) pic[black,line width={6pt*0.2}]{carc=\dodec{2}:\dodec{4}:{6pt*0.9}};%
+}
+\NewDocumentCommand{\two}{}{%
+  \draw[white] (0,0) circle (0pt) pic[black]{carc=\dodec{7}:\dodec{2+12}:{6pt*0.5}};
+  \draw[white] (0,0) circle (0pt) pic[black,line width={6pt*0.2}]{carc=\dodec{7}:\dodec{10}:{6pt*0.4}};
+}
+
+\NewDocumentCommand{\three}{}{%
+  \draw[white] (0,0) circle (0pt) pic[black]{carc=\dodec{3}:\dodec{11}:6pt};
+  \draw[white] (0,0) circle (0pt) pic[black,line width={6pt*0.2}]{carc=\dodec{3}:\dodec{6}:{6pt*0.9}};
+  \draw[white] (0,0) circle (0pt) pic[black,line width={6pt*0.2}]{carc=\dodec{8}:\dodec{11}:{6pt*0.9}};
+}
+
+\NewDocumentCommand{\four}{}{
+  \draw[white] (0,0) circle (0pt) pic[black]{carc=\dodec{8}:\dodec{6+12}:6pt};
+  \draw[white] (0,0) circle (0pt) pic[black,line width={6pt*0.2}]{carc=\dodec{0}:\dodec{2}:{6pt*0.9}};
+}
+\NewDocumentCommand{\five}{}{
+  \draw[black] (0,0) circle ({6pt*0.5});
+}
+\NewDocumentCommand{\ten}{}{
+  \draw[white] (0,0) circle (0pt) pic[black]{carc=\dodec{2}:\dodec{8}:6pt};
+  \draw[black] (0,0) -- ++(\dodec{2}:6pt);
+}
+\NewDocumentCommand{\fifteen}{}{
+  \draw[white] (0,0) circle (0pt) pic[black]{carc=0:180:6pt};
+  \draw[black] ({6pt*0.3},0) -- ++(0:{6pt*0.7});
+}
+
+\newcommand\n[1]{\begin{tikzpicture}[anchor=center]\draw[white] (0,0) circle (6pt);%\node[anchor=south east] at (1.2cm,-1.2cm) {\i};
+\luadirect{print_tesseracont(totesseracont(#1))}\end{tikzpicture}}
+% \NewDocumentCommand{\tesseracont}{m}{%
+%   \begin{tikzpicture}%
+%     \luadirect{print_tesseracont(totesseracont(#1))}%
+%   \end{tikzpicture}%
+% }
 
 \title{\system{51} source book}
 \author{Nathanael~Farley, David~Sumner, et al.}

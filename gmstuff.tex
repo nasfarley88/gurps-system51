@@ -125,10 +125,38 @@ They have the following weapon:
   \skill{`Innate' Attack (pistol)}{10}
 \end{character}
 
+
+\chapter{Recurring NPCs}
+\label{cha:recurring-npcs}
+
+\section{Debbie Dyers}
+\label{sec:debbie-dyers}
+
+Debbie Dyers is an \emph{independent contractor}\footnote{I.e.~someone who is a
+  bounty hunter who does not belong to an external organisation} who is
+legendary in the right circles. She comes from a long line of hunters, the first
+of which was recorded on earth who was allgegedly a `monster hunter' according
+to family folklore
+
+An imposing figure at 6'2" with fiery red hair which extends to her shoulders.
+She is usually sporting a trenchcoat which hides her extensive weaponry and
+equipment.
+
+Markedly against bio-enhancements, she has a special vest (i.e.~Signature Gear)
+which gives her 360\textsuperscript{o} heat vision allowing her to aim at
+two (heat based) targets at once.
+
+
+
 \chapter{Weapons}
 \label{cha:weapons}
 
-\section{Cordite pistol}
+\section{Workings}
+\label{sec:workings}
+
+
+
+\subsection{Cordite pistol}
 \label{sec:cordite-pistol}
 
 Assumes a cordite pistol with \dice{3} damage
@@ -148,7 +176,7 @@ Assumes a cordite pistol with \dice{3} damage
 
 \InnateAttackBreakdown{}
 
-\section{Silenced cordite pistol}
+\subsection{Silenced cordite pistol}
 \label{sec:silenc-cord-pist}
 
 \begin{innateattack}[silenced cordite pistol]
@@ -161,7 +189,7 @@ Assumes a cordite pistol with \dice{3} damage
 
 \InnateAttackBreakdown{}
 
-\section{Cordite rifle}
+\subsection{Cordite rifle}
 \label{sec:cordite-rifle}
 
 Assumes a cordite rifle with \dice{6} damage
@@ -178,7 +206,7 @@ Assumes a cordite rifle with \dice{6} damage
 \end{innateattack}
 
 
-\section{Laser pistol}
+\subsection{Laser pistol}
 \label{sec:laser-pistol}
 
 Assumes a laser pistol with same point spend as cordite pistol but more damage
@@ -195,7 +223,7 @@ Assumes a laser pistol with same point spend as cordite pistol but more damage
 \end{innateattack}
 
 
-\section{Laser rifle}
+\subsection{Laser rifle}
 \label{sec:laser-rifle}
 
 Assumes a laser rifle matches points spend with cordite rifle, but has more damage
@@ -210,6 +238,30 @@ Assumes a laser rifle matches points spend with cordite rifle, but has more dama
   \item This means the laser rifle is worth \InnateAttackTotalPoints{}
 \end{innateattack}
 
+\section{Flashcards}
+\label{sec:flashcards}
+
+\fbox{\begin{minipage}{0.99\linewidth}
+  \begin{minipage}[t]{0.45\linewidth}
+    \raggedright
+    \luadirect{x = _INNATE_ATTACK["laser rifle"]}
+    % This has already been defined so we can just grab the stuff
+    Name:\dotfill Laser rifle\\
+    Damage:\dotfill \dice{\luadirect{tex.sprint(x.level)}}(pi-)\\
+    Range:\dotfill 10 \\
+    Accuracy:\dotfill 3\\
+    Rate of Fire (RoF):\dotfill 1\\
+    Shots (clip size):\dotfill \(\infty\)\\
+    Bulk:\dotfill -4
+  \end{minipage}\hfill
+  \begin{minipage}[t]{0.45\linewidth}
+    \raggedright
+    \textbf{Notes}\\[1ex]
+    \textbf{small piercing (pi-)}~Laser beam is very narrow; damage on flesh is
+    halved. Can hit eyes/vitals/etc..
+  \end{minipage}
+\end{minipage}
+}
 %%% Local Variables:
 %%% mode: latex
 %%% TeX-master: "main"
