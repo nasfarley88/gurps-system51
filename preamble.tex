@@ -8,24 +8,11 @@
 \usepackage{microtype}
 \usepackage{xparse}
 \usepackage{multicol}
-\usepackage{paralist}
 \usepackage{graphicx}
 \usepackage{tikz}
 \usetikzlibrary{calc,intersections,angles,positioning}
 \usepackage{tcolorbox}
 \usepackage{transparent}
-
-\usepackage{xassoccnt}
-
-\NewTotalDocumentCounter{totalrealpage}
-\NewDocumentCounter{realpage}
-
-\DeclareAssociatedCounters{page}{realpage,totalrealpage}
-\makeatletter
-\AtBeginDocument{%
-  \setcounter{realpage}{1}
-}
-
 
 \renewcommand{\familydefault}{\sfdefault}
 
@@ -70,8 +57,8 @@
 {\begin{figure*}
     \begin{minipage}{1.0\linewidth}
       \begin{multicols}{3}
-        \begin{compactitem}}%
-        {\end{compactitem}
+        \begin{itemize}}%
+        {\end{itemize}
       \end{multicols}
       #3
     \end{minipage}
