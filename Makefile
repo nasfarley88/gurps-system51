@@ -7,8 +7,8 @@ all: main.pdf system51-player-guide.pdf
 	ln -sf ${PWD}/images $(basename $@)_output/
 	ln -sf ${PWD}/*.tex $(basename $@)_output/
 	ln -sf ${PWD}/*.lua $(basename $@)_output/
-	cd $(basename $@)_output/
-	latexmk -interaction=nonstopmode -lualatex $(basename $@).tex
+	cd $(basename $@)_output/ && \
+		latexmk -interaction=nonstopmode -lualatex $(basename $@).tex
 
 clean:
 	latexmk -CA
