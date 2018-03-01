@@ -15,6 +15,4 @@ jobs:
           name: Make the projects
           command: make -j$(nproc)
       - store_artifacts:
-          path: main_output
-      - store_artifacts:
-          path: system51-player-guide_output
+          path: .
