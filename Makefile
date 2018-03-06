@@ -1,6 +1,7 @@
+PDFS=main.pdf system51-player-guide.pdf
 SHELL=/bin/bash
 
-all: main.pdf system51-player-guide.pdf
+all: $(PDFS)
 
 %.pdf: *.tex
 	mkdir -p $(basename $@)_output
@@ -9,7 +10,9 @@ all: main.pdf system51-player-guide.pdf
 	ln -sf ${PWD}/*.lua $(basename $@)_output/
 	cd $(basename $@)_output/ && \
 		latexmk -interaction=nonstopmode -lualatex $(basename $@).tex
+	cp $(basename $@)_output/$@ ./
 
 clean:
 	latexmk -CA
 	rm -r *_output
+	rm $(PDFS)
