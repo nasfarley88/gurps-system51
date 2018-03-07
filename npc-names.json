@@ -1,10 +1,46 @@
 [
- {
- "name": "Bob",
- "genders": ["male"]
- },
- {
- "name": "Michael",
- "genders": ["male", "female"]
- }
+  {
+    "name": "Bob",
+    "genders": ["male"]
+  },
+  {
+    "name": "Michael",
+    "genders": ["male", "female"]
+  },
+  {
+    "name": "Miranda",
+    "genders": ["female"]
+  },
+  {
+    "name": "Charles",
+    "genders": ["male"]
+  },
+  {
+    "name": "Samantha",
+    "genders": ["female"]
+  },
+  {
+    "name": "Sam",
+    "genders": ["male", "female"]
+  },
+  {
+    "name": "Jake",
+    "genders": ["male"]
+  },
+  {
+    "name": "Regindald",
+    "genders": ["male"]
+  },
+  {
+    "name": "Raymond",
+    "genders": ["male"]
+  },
+  {
+    "name": "Jamiroquai",
+    "genders": ["male"]
+  },
+  {
+    "name": "Xanitha",
+    "genders": ["female"]
+  }
 ]
