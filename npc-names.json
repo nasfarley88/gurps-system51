@@ -1,10 +1,10 @@
 [
  {
- name: "Bob",
- genders: ["male"]
+ "name": "Bob",
+ "genders": ["male"]
  },
  {
- name: "Michael",
- genders: ["male", "female"]
+ "name": "Michael",
+ "genders": ["male", "female"]
  }
 ]
