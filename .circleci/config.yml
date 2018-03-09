@@ -14,5 +14,14 @@ jobs:
       - run:
           name: Make the projects
           command: make -j$(nproc)
+      - run:
+          name: Checkout GCS
+          command: wget https://github.com/richardwilkes/gcs/releases/download/gcs-4.10.0/gcs-4.10.0-linux.zip && unzip *.zip
+      - run:
+          name: Add GCS to path
+          command: unalias gcs; export PATH=$(readlink -f gcs-4.10.0-linux):$PATH
+      - run:
+          name: PDF the character sheets
+          command: cd character_sheets/ && gcs -pdf *.gcs
       - store_artifacts:
           path: .
