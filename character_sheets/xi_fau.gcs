@@ -1,0 +1,581 @@
+<?xml version="1.0" encoding="US-ASCII" ?>
+<character id="65abd7c3-a997-4284-b156-28fdbcad47fc" version="3">
+	<created_date>03-Feb-2018</created_date>
+	<modified_date>09-Mar-2018 12:56</modified_date>
+	<profile>
+		<player_name>nasfarley88</player_name>
+		<name>Xi Fau</name>
+		<age>32</age>
+		<birthday>June 22</birthday>
+		<eyes>Violet</eyes>
+		<hair>Black, Wavy, Long</hair>
+		<skin>Light Tan</skin>
+		<handedness>Right</handedness>
+		<height>6'</height>
+		<weight>128 lb</weight>
+		<SM>0</SM>
+		<gender>Male</gender>
+		<race>Human</race>
+		<body_type>humanoid</body_type>
+		<tech_level>10</tech_level>
+	</profile>
+	<HP>0</HP>
+	<FP>0</FP>
+	<total_points>130</total_points>
+	<ST>11</ST>
+	<DX>12</DX>
+	<IQ>10</IQ>
+	<HT>12</HT>
+	<will>0</will>
+	<perception>0</perception>
+	<speed>0</speed>
+	<move>0</move>
+	<include_punch>true</include_punch>
+	<include_kick>true</include_kick>
+	<include_kick_with_boots>true</include_kick_with_boots>
+	<advantage_list>
+		<advantage version="2">
+			<name>Trained by a Master</name>
+			<type>Mental</type>
+			<base_points>30</base_points>
+			<reference>B93</reference>
+			<notes>Halve rapid strike (B370) or successive parry penalties (B376)</notes>
+			<categories>
+				<category>Advantage</category>
+			</categories>
+		</advantage>
+		<advantage version="2">
+			<name>Weapon Master (Katana)</name>
+			<type>Mental</type>
+			<modifier version="1">
+				<name>One weapon</name>
+				<cost type="points">20</cost>
+				<affects>total</affects>
+				<reference>B99</reference>
+			</modifier>
+			<modifier version="1" enabled="no">
+				<name>Two weapons</name>
+				<cost type="points">25</cost>
+				<affects>total</affects>
+				<reference>B99</reference>
+			</modifier>
+			<modifier version="1" enabled="no">
+				<name>Small class</name>
+				<cost type="points">30</cost>
+				<affects>total</affects>
+				<reference>B99</reference>
+			</modifier>
+			<modifier version="1" enabled="no">
+				<name>Medium class</name>
+				<cost type="points">35</cost>
+				<affects>total</affects>
+				<reference>B99</reference>
+			</modifier>
+			<modifier version="1" enabled="no">
+				<name>Large class</name>
+				<cost type="points">40</cost>
+				<affects>total</affects>
+				<reference>B99</reference>
+			</modifier>
+			<reference>B99</reference>
+			<notes>Halve rapid strike (B370) or successive parry penalties (B376)</notes>
+			<categories>
+				<category>Advantage</category>
+			</categories>
+		</advantage>
+		<advantage version="2">
+			<name>Luck</name>
+			<type>Mental</type>
+			<base_points>15</base_points>
+			<modifier version="1" enabled="no">
+				<name>Active</name>
+				<cost type="percentage">-40</cost>
+				<affects>total</affects>
+				<reference>B66</reference>
+			</modifier>
+			<modifier version="1" enabled="no">
+				<name>Aspected</name>
+				<cost type="percentage">-20</cost>
+				<affects>total</affects>
+				<reference>B66</reference>
+				<notes>@Aspect@</notes>
+			</modifier>
+			<modifier version="1" enabled="no">
+				<name>Defensive</name>
+				<cost type="percentage">-20</cost>
+				<affects>total</affects>
+				<reference>B66</reference>
+			</modifier>
+			<modifier version="1" enabled="no">
+				<name>Wishing</name>
+				<cost type="percentage">100</cost>
+				<affects>total</affects>
+				<reference>P59</reference>
+			</modifier>
+			<reference>B66</reference>
+			<notes>Usable once per hour of play</notes>
+			<categories>
+				<category>Advantage</category>
+			</categories>
+			<prereq_list all="yes">
+				<advantage_prereq has="no">
+					<name compare="starts with">Luck</name>
+					<notes compare="is anything"></notes>
+				</advantage_prereq>
+			</prereq_list>
+		</advantage>
+		<advantage version="2">
+			<name>Ambidexterity</name>
+			<type>Physical</type>
+			<base_points>5</base_points>
+			<reference>B39</reference>
+			<categories>
+				<category>Advantage</category>
+			</categories>
+		</advantage>
+		<advantage version="2">
+			<name>Cultural Familiarity (Xyron)</name>
+			<type>Mental</type>
+			<base_points>1</base_points>
+			<modifier version="1" enabled="no">
+				<name>Alien</name>
+				<cost type="points">1</cost>
+				<affects>total</affects>
+			</modifier>
+			<modifier version="1" enabled="no">
+				<name>Native</name>
+				<cost type="points">-1</cost>
+				<affects>total</affects>
+			</modifier>
+			<reference>B23</reference>
+			<categories>
+				<category>Advantage</category>
+			</categories>
+		</advantage>
+		<advantage version="2">
+			<name>Light Sleeper</name>
+			<type>Physical</type>
+			<base_points>-1</base_points>
+			<reference>B142</reference>
+			<categories>
+				<category>Disadvantage</category>
+			</categories>
+		</advantage>
+		<advantage version="2">
+			<name>Greed</name>
+			<type>Mental</type>
+			<base_points>-15</base_points>
+			<cr>12</cr>
+			<reference>B137</reference>
+			<categories>
+				<category>Disadvantage</category>
+			</categories>
+		</advantage>
+		<advantage version="2">
+			<name>Code of Honor (Chivalry)</name>
+			<type>Mental</type>
+			<base_points>-15</base_points>
+			<reference>B127</reference>
+			<categories>
+				<category>Disadvantage</category>
+			</categories>
+		</advantage>
+		<advantage version="2">
+			<name>Killjoy</name>
+			<type>Physical</type>
+			<base_points>-15</base_points>
+			<reference>B140</reference>
+			<categories>
+				<category>Disadvantage</category>
+			</categories>
+			<skill_bonus>
+				<name compare="is">carousing</name>
+				<specialization compare="is anything"></specialization>
+				<amount>-3</amount>
+			</skill_bonus>
+			<skill_bonus>
+				<name compare="contains">connoisseur</name>
+				<specialization compare="is anything"></specialization>
+				<amount>-3</amount>
+			</skill_bonus>
+			<skill_bonus>
+				<name compare="is">erotic art</name>
+				<specialization compare="is anything"></specialization>
+				<amount>-3</amount>
+			</skill_bonus>
+			<skill_bonus>
+				<name compare="is">gambling</name>
+				<specialization compare="is anything"></specialization>
+				<amount>-3</amount>
+			</skill_bonus>
+		</advantage>
+	</advantage_list>
+	<skill_list>
+		<skill version="2">
+			<name>Guns</name>
+			<specialization>Cordite pistol</specialization>
+			<tech_level>10</tech_level>
+			<difficulty>DX/E</difficulty>
+			<points>2</points>
+			<reference>B198</reference>
+			<categories>
+				<category>Combat/Weapon</category>
+				<category>Ranged Combat</category>
+			</categories>
+			<default>
+				<type>DX</type>
+				<modifier>-4</modifier>
+			</default>
+			<default>
+				<type>Skill</type>
+				<name>Guns</name>
+				<modifier>-4</modifier>
+			</default>
+		</skill>
+		<skill version="2">
+			<name>Broadsword</name>
+			<difficulty>DX/A</difficulty>
+			<points>8</points>
+			<reference>B208</reference>
+			<categories>
+				<category>Combat/Weapon</category>
+				<category>Melee Combat</category>
+			</categories>
+			<default>
+				<type>Skill</type>
+				<name>Force Sword</name>
+				<modifier>-4</modifier>
+			</default>
+			<default>
+				<type>Skill</type>
+				<name>Rapier</name>
+				<modifier>-4</modifier>
+			</default>
+			<default>
+				<type>Skill</type>
+				<name>Saber</name>
+				<modifier>-4</modifier>
+			</default>
+			<default>
+				<type>Skill</type>
+				<name>Shortsword</name>
+				<modifier>-2</modifier>
+			</default>
+			<default>
+				<type>Skill</type>
+				<name>Two-Handed Sword</name>
+				<modifier>-4</modifier>
+			</default>
+			<default>
+				<type>DX</type>
+				<modifier>-5</modifier>
+			</default>
+		</skill>
+		<technique version="2" limit="0">
+			<name>Dual-Weapon Attack</name>
+			<difficulty>H</difficulty>
+			<points>0</points>
+			<reference>B230,MA83</reference>
+			<default>
+				<type>Skill</type>
+				<name>Broadsword</name>
+				<modifier>-4</modifier>
+			</default>
+			<categories>
+				<category>Cinematic Techniques</category>
+				<category>Combat/Weapon</category>
+				<category>Melee Combat</category>
+			</categories>
+		</technique>
+		<skill version="2">
+			<name>Observation</name>
+			<difficulty>Per/A</difficulty>
+			<points>4</points>
+			<reference>B211</reference>
+			<categories>
+				<category>Criminal/Street</category>
+				<category>Military</category>
+				<category>Police</category>
+				<category>Spy</category>
+			</categories>
+			<default>
+				<type>Per</type>
+				<modifier>-5</modifier>
+			</default>
+			<default>
+				<type>Skill</type>
+				<name>Shadowing</name>
+				<modifier>-5</modifier>
+			</default>
+		</skill>
+		<skill version="2">
+			<name>Interrogation</name>
+			<difficulty>IQ/A</difficulty>
+			<points>1</points>
+			<reference>B202</reference>
+			<categories>
+				<category>Military</category>
+				<category>Police</category>
+				<category>Spy</category>
+			</categories>
+			<default>
+				<type>IQ</type>
+				<modifier>-5</modifier>
+			</default>
+			<default>
+				<type>Skill</type>
+				<name>Intimidation</name>
+				<modifier>-3</modifier>
+			</default>
+			<default>
+				<type>Skill</type>
+				<name>Psychology</name>
+				<modifier>-4</modifier>
+			</default>
+		</skill>
+		<skill version="2">
+			<name>Wetwork!</name>
+			<difficulty>DX/W</difficulty>
+			<points>24</points>
+			<notes>Includes: Blow-pipe, Fast-Draw (any weapon), Garrote, Knife, Stealth, and  Thrown Weapon (Dart, Knife, or Shuriken).</notes>
+		</skill>
+	</skill_list>
+	<equipment_list>
+		<equipment version="4" state="equipped">
+			<quantity>1</quantity>
+			<description>Small Knife</description>
+			<tech_level>0</tech_level>
+			<legality_class>4</legality_class>
+			<value>30</value>
+			<weight>0.5 lb</weight>
+			<reference>B272</reference>
+			<melee_weapon>
+				<damage>sw-3 cut</damage>
+				<strength>5</strength>
+				<usage>Swung</usage>
+				<reach>C,1</reach>
+				<parry>-1</parry>
+				<block>No</block>
+				<default>
+					<type>DX</type>
+					<modifier>-4</modifier>
+				</default>
+				<default>
+					<type>Skill</type>
+					<name>Knife</name>
+					<modifier>0</modifier>
+				</default>
+				<default>
+					<type>Skill</type>
+					<name>Force Sword</name>
+					<modifier>-3</modifier>
+				</default>
+				<default>
+					<type>Skill</type>
+					<name>Main-Gauche</name>
+					<modifier>-3</modifier>
+				</default>
+				<default>
+					<type>Skill</type>
+					<name>Shortsword</name>
+					<modifier>-3</modifier>
+				</default>
+				<default>
+					<type>Skill</type>
+					<name>Sword!</name>
+					<modifier>0</modifier>
+				</default>
+				<default>
+					<type>Skill</type>
+					<name>Wetwork!</name>
+					<modifier>0</modifier>
+				</default>
+			</melee_weapon>
+			<melee_weapon>
+				<damage>thr-1 imp</damage>
+				<strength>5</strength>
+				<usage>Thrust</usage>
+				<reach>C</reach>
+				<parry>-1</parry>
+				<block>No</block>
+				<default>
+					<type>DX</type>
+					<modifier>-4</modifier>
+				</default>
+				<default>
+					<type>Skill</type>
+					<name>Knife</name>
+					<modifier>0</modifier>
+				</default>
+				<default>
+					<type>Skill</type>
+					<name>Force Sword</name>
+					<modifier>-3</modifier>
+				</default>
+				<default>
+					<type>Skill</type>
+					<name>Main-Gauche</name>
+					<modifier>-3</modifier>
+				</default>
+				<default>
+					<type>Skill</type>
+					<name>Shortsword</name>
+					<modifier>-3</modifier>
+				</default>
+				<default>
+					<type>Skill</type>
+					<name>Sword!</name>
+					<modifier>0</modifier>
+				</default>
+				<default>
+					<type>Skill</type>
+					<name>Wetwork!</name>
+					<modifier>0</modifier>
+				</default>
+			</melee_weapon>
+			<ranged_weapon>
+				<damage>thr-1 imp</damage>
+				<strength>5</strength>
+				<usage>Thrown</usage>
+				<accuracy>+0</accuracy>
+				<range>x0.5/x1</range>
+				<rate_of_fire>1</rate_of_fire>
+				<shots>T(1)</shots>
+				<bulk>-1</bulk>
+				<default>
+					<type>DX</type>
+					<modifier>-4</modifier>
+				</default>
+				<default>
+					<type>Skill</type>
+					<name>Thrown Weapon</name>
+					<specialization>Knife</specialization>
+					<modifier>0</modifier>
+				</default>
+			</ranged_weapon>
+			<categories>
+				<category>Melee Weapon</category>
+				<category>Missile Weapon</category>
+			</categories>
+		</equipment>
+		<equipment version="4" state="equipped">
+			<quantity>2</quantity>
+			<description>Katana</description>
+			<tech_level>3</tech_level>
+			<legality_class>4</legality_class>
+			<value>650</value>
+			<weight>5 lb</weight>
+			<reference>B271</reference>
+			<melee_weapon>
+				<damage>sw+3 cut</damage>
+				<strength>11</strength>
+				<usage>Swung</usage>
+				<reach>1,2</reach>
+				<parry>0</parry>
+				<block>No</block>
+				<default>
+					<type>DX</type>
+					<modifier>-5</modifier>
+				</default>
+				<default>
+					<type>Skill</type>
+					<name>Force Sword</name>
+					<modifier>-4</modifier>
+				</default>
+				<default>
+					<type>Skill</type>
+					<name>Broadsword</name>
+					<modifier>0</modifier>
+				</default>
+				<default>
+					<type>Skill</type>
+					<name>Rapier</name>
+					<modifier>-4</modifier>
+				</default>
+				<default>
+					<type>Skill</type>
+					<name>Saber</name>
+					<modifier>-4</modifier>
+				</default>
+				<default>
+					<type>Skill</type>
+					<name>Shortsword</name>
+					<modifier>-2</modifier>
+				</default>
+				<default>
+					<type>Skill</type>
+					<name>Two-Handed Sword</name>
+					<modifier>-4</modifier>
+				</default>
+				<default>
+					<type>Skill</type>
+					<name>Sword!</name>
+					<modifier>0</modifier>
+				</default>
+			</melee_weapon>
+			<melee_weapon>
+				<damage>thr+3 imp</damage>
+				<strength>11</strength>
+				<usage>Thrust</usage>
+				<reach>1</reach>
+				<parry>0</parry>
+				<block>No</block>
+				<default>
+					<type>DX</type>
+					<modifier>-5</modifier>
+				</default>
+				<default>
+					<type>Skill</type>
+					<name>Force Sword</name>
+					<modifier>-4</modifier>
+				</default>
+				<default>
+					<type>Skill</type>
+					<name>Broadsword</name>
+					<modifier>0</modifier>
+				</default>
+				<default>
+					<type>Skill</type>
+					<name>Rapier</name>
+					<modifier>-4</modifier>
+				</default>
+				<default>
+					<type>Skill</type>
+					<name>Saber</name>
+					<modifier>-4</modifier>
+				</default>
+				<default>
+					<type>Skill</type>
+					<name>Shortsword</name>
+					<modifier>-2</modifier>
+				</default>
+				<default>
+					<type>Skill</type>
+					<name>Two-Handed Sword</name>
+					<modifier>-4</modifier>
+				</default>
+				<default>
+					<type>Skill</type>
+					<name>Sword!</name>
+					<modifier>0</modifier>
+				</default>
+			</melee_weapon>
+			<notes>(with added +2 per die for weapon master)</notes>
+			<categories>
+				<category>Melee Weapon</category>
+			</categories>
+		</equipment>
+	</equipment_list>
+	<print_settings printer="Photosmart_C4500" units="in">
+		<orientation>portrait</orientation>
+		<width>8.267716407775879</width>
+		<height>11.692913055419922</height>
+		<top_margin>0.5</top_margin>
+		<left_margin>0.5</left_margin>
+		<bottom_margin>0.5</bottom_margin>
+		<right_margin>0.5</right_margin>
+		<ink_chromaticity>monochrome</ink_chromaticity>
+		<sides>single</sides>
+		<quality>normal</quality>
+	</print_settings>
+</character>
