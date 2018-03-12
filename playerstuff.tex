@@ -35,12 +35,13 @@ The map of the galaxy as it currently stands can be found at \autoref{fig:mapoft
 
 \begin{figure*}
   \centering
-  % \begin{tikzpicture}
-  %   \node at (0,0) {{\transparent{0.6}%
-  %       \includegraphics[width=0.9\linewidth]{galaxy-B-3-neg-released-by-cc}}};
-  %   \galaxymappoint{1}{1}{\system{51}} \galaxymappoint{1.4}{0.9}{\system{37}}[1]
-  %   \galaxymappoint{1}{-2}{Earth}
-  % \end{tikzpicture}
+  \begin{tikzpicture}
+    \node at (0,0) {{\transparent{0.6}%
+        \includegraphics[width=17cm]{galaxy-B-3-neg-released-by-cc-17-cm}}};
+    \galaxymappoint{1}{1}{\system{51}}
+    \galaxymappoint{1.4}{0.9}{\system{37}}[1]
+    \galaxymappoint{1}{-2}{Earth}
+  \end{tikzpicture}
   \caption{Map of the galaxy. Milky way galaxy photo from
     \url{http://www.enderra.com/2012/02/01/milky-galaxy-black-white/},
     annotations added.}
@@ -60,6 +61,17 @@ The map of the galaxy as it currently stands can be found at \autoref{fig:mapoft
 
 \begin{figure*}
   \centering
+  \NewDocumentCommand{\galaxyPlanetDescription}{mm}{\centering
+    #1\\[1ex]%
+    \itshape #2%
+  }
+  \NewDocumentCommand{\tmpXyronDescription}{}{%
+    \galaxyPlanetDescription{Xyron}{A feudal world, similar to ancient Japan.}%
+  }
+  \NewDocumentCommand{\tmpTechopiaDescription}{}{%
+    \galaxyPlanetDescription{Techopia}{A large world covered in corporations.
+      Largely considered to be the de facto capital of \system{51}.}%
+  }
   \begin{tikzpicture}
     % OK, let's start at the bottom with a sun.
     \pgfmathsetmacro{\halfwidth}{8}
@@ -91,10 +103,12 @@ The map of the galaxy as it currently stands can be found at \autoref{fig:mapoft
     \node[below right = 2cm and 4cm of firstplanet] (firstplanetdescription)  {The first planet};
     \draw (firstplanet) to[galaxy line] (firstplanetdescription);
 
-    \node[above left = 2cm and 4cm of secondplanet] (secondplanetdescription)  {The second planet};
+    \node[above left = 1.5cm and 4cm of secondplanet] (secondplanetdescription)  {%
+      \parbox{4cm}{\tmpXyronDescription}};
     \draw (secondplanet) to[galaxy line] (secondplanetdescription);
 
-    \node[above left = 2cm and 4cm of thirdplanet] (thirdplanetdescription)  {The third planet};
+    \node[above left = 2cm and 4cm of thirdplanet] (thirdplanetdescription)  {%
+      \parbox{4cm}{\tmpTechopiaDescription}};
     \draw (thirdplanet) to[galaxy line] (thirdplanetdescription);
 
     \node[below right = 2cm and 4cm of fourthplanet] (fourthplanetdescription)  {The fourth planet and it's moon};

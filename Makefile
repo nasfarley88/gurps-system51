@@ -1,4 +1,4 @@
-PDFS=main.pdf system51-player-guide.pdf
+PDFS=main.pdf system51-player-guide.pdf main-for-the-web.pdf
 SHELL=/bin/bash
 
 all: $(PDFS)
@@ -14,6 +14,9 @@ all: $(PDFS)
 	cp $(basename $@)_output/$@ ./
 
 clean:
+  # Sometimes I compile in the root directory, this needs cleaning before git commtting
 	latexmk -CA
-	rm -r *_output
-	rm $(PDFS)
+
+  # Removing the usual things.
+	rm -rf *_output
+	rm -f $(PDFS)
