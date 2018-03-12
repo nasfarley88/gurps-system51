@@ -304,8 +304,9 @@ Assumes a cordite pistol with \dice{3} damage
   \item This means the cordite pistol is worth \InnateAttackTotalPoints{}
 \end{innateattack}
 
-\InnateAttackBreakdown{}
-
+\begin{center}
+  \InnateAttackBreakdown
+\end{center}
 \subsection{Silenced cordite pistol}
 \label{sec:silenc-cord-pist}
 
@@ -317,8 +318,9 @@ Assumes a cordite pistol with \dice{3} damage
     \InnateAttackTotalPoints{}
 \end{innateattack}
 
-\InnateAttackBreakdown{}
-
+\begin{center}
+  \InnateAttackBreakdown
+\end{center}
 \subsection{Cordite rifle}
 \label{sec:cordite-rifle}
 
@@ -328,13 +330,26 @@ Assumes a cordite rifle with \dice{6} damage
   \item Cordite rifles are pi damage so \InnateAttackPointsPerLevel{5} with
     \dice{6} damage for \InnateAttackLevel{6}.
   \item Clip of 15 means Limited Use but no modifiers
-  \item Recoil is OK for the base (Rcl 2) so \InnateAttackPercentModifier{-10}
+  \item Recoil is OK for the base (Rcl 2) so \InnateAttackPercentModifier[Recoil 2]{-10}
   \item Accuracy at 3 is fine
   \item It's \emph{loud} which means a single level of Nuisance Effect at
-    \InnateAttackPercentModifier{-5}
+    \InnateAttackPercentModifier[Nuicanse (noise)]{-5}
   \item This means the cordite rifle is worth \InnateAttackTotalPoints{}
 \end{innateattack}
 
+\subsection{Silenced cordite rifle}
+\label{sec:silenc-cord-rifle}
+
+\begin{innateattack}[silenced cordite rifle]
+  \item \InnateAttackBasedOn{cordite rifle}
+  \item But it's silenced so 
+    \InnateAttackRemovePercentModifier{Nuicanse (noise)}
+    
+  \item Which gives \InnateAttackTotalPoints{}
+\end{innateattack}
+\begin{center}
+  \InnateAttackBreakdown
+\end{center}
 
 \subsection{Laser pistol}
 \label{sec:laser-pistol}
@@ -367,6 +382,33 @@ Assumes a laser rifle matches points spend with cordite rifle, but has more dama
   \item It's silent
   \item This means the laser rifle is worth \InnateAttackTotalPoints{}
 \end{innateattack}
+
+\subsection{Katana}
+\label{sec:katana}
+
+\begin{innateattack}[katana]
+  \item Main attack is impaling for \dice{1}[2] which amounts to
+    \InnateAttackPointsPerLevel{8} and \InnateAttackLevel{1.6}.
+  \item It's a melee attack, so \InnateAttackPercentModifier[Melee attack, range 1--2]{-20} for reach 1--2
+  \item This means the Katana is worth \InnateAttackTotalPoints{}
+\end{innateattack}
+\begin{center}
+  \InnateAttackBreakdown
+\end{center}
+
+\subsection{Katana (cutting)}
+\label{sec:katana-cutting}
+
+\begin{innateattack}[katana (cutting)]
+\item This is \InnateAttackBasedOn{katana}
+\item But it's cutting, so \InnateAttackPointsPerLevel{7}
+\item It's also based on swing, so it's level is \InnateAttackLevel{2.3} as the
+  damage is \dice{1}[4].
+  \item This makes it worth \InnateAttackTotalPoints{}.
+\end{innateattack}
+\begin{center}
+  \InnateAttackBreakdown
+\end{center}
 
 \section{Flashcards}
 \label{sec:flashcards}
