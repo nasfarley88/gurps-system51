@@ -59,6 +59,20 @@ The map of the galaxy as it currently stands can be found at \autoref{fig:mapoft
     \draw (-#1, {#2-\systembaseradius}) arc (\angleone:\angletwo:#2) #3;
 }
 
+\NewDocumentCommand{\asteroidarc}{O{8}mm}{
+
+    \pgfmathsetmacro{\angleone}{90+asin(#1/#2)};
+    \pgfmathsetmacro{\angletwo}{90-asin(#1/#2)};
+    \pgfmathsetmacro{\systembaseradius}{10};
+
+    \pgfmathsetmacro{\anglethree}{90-asin(#1/#3)};
+    \pgfmathsetmacro{\anglefour}{90+asin(#1/#3)};
+
+    \fill[pattern=north west lines] (-#1, {#2-\systembaseradius}) arc (\angleone:\angletwo:#2)
+    -- (#1, {#3-\systembaseradius}) arc (\anglethree:\anglefour:#3)
+    -- cycle;
+}
+
 \begin{figure*}
   \centering
   \NewDocumentCommand{\galaxyPlanetDescription}{mm}{\centering
@@ -84,26 +98,28 @@ The map of the galaxy as it currently stands can be found at \autoref{fig:mapoft
     \node (sunright) at (\halfwidth, 0) {(\halfwidth, 0)};
 
     \systemarc{15}[coordinate[midway] (sun)];
-    \systemarc{22}[coordinate[midway] (firstplanet)];
-    \systemarc{25}[coordinate [midway] (secondplanet)];
-    \systemarc{30}[coordinate [midway] (thirdplanet)];
-    \systemarc{36}[coordinate [midway] (fourthplanet)];
-    \systemarc{39}[coordinate [midway] (fifthplanet)];
+    \asteroidarc{36}{37};
+    \systemarc{19}[coordinate[midway] (firstplanet)];
+    \systemarc{21.5}[coordinate [midway] (secondplanet)];
+    \systemarc{25.5}[coordinate [midway] (thirdplanet)];
+    \systemarc{32}[coordinate [midway] (fourthplanet)];
+    \asteroidarc{36}{37.5};
+    % \systemarc{39}[coordinate [midway] (fifthplanet)];
 
     \filldraw (firstplanet) circle (2mm);
     \filldraw (secondplanet) circle (3mm);
     \filldraw (thirdplanet) circle (5mm);
     \filldraw (fourthplanet) circle (2mm);
-    \filldraw (fifthplanet) circle (4mm);
+    % \filldraw (fifthplanet) circle (4mm);
 
     \filldraw (fourthplanet) ++ (.3,.3) circle (1mm);
 
-    \node[above = of sun] (sundescription) {\textsc{Sun}};
+    \node[above = 0.2cm of sun] (sundescription) {\textsc{Sun}};
 
-    \node[below right = 2cm and 4cm of firstplanet] (firstplanetdescription)  {The first planet};
+    \node[below right = 1.5cm and 4cm of firstplanet] (firstplanetdescription)  {The first planet};
     \draw (firstplanet) to[galaxy line] (firstplanetdescription);
 
-    \node[above left = 1.5cm and 4cm of secondplanet] (secondplanetdescription)  {%
+    \node[above left = 0.5cm and 4cm of secondplanet] (secondplanetdescription)  {%
       \parbox{4cm}{\tmpXyronDescription}};
     \draw (secondplanet) to[galaxy line] (secondplanetdescription);
 
@@ -114,8 +130,8 @@ The map of the galaxy as it currently stands can be found at \autoref{fig:mapoft
     \node[below right = 2cm and 4cm of fourthplanet] (fourthplanetdescription)  {The fourth planet and it's moon};
     \draw (fourthplanet) to[galaxy line] (fourthplanetdescription);
 
-    \node[above right = 2cm and 4cm of fifthplanet] (fifthplanetdescription)  {The fifth planet};
-    \draw (fifthplanet) to[galaxy line] (fifthplanetdescription);
+    % \node[above right = 2cm and 4cm of fifthplanet] (fifthplanetdescription)  {The fifth planet};
+    % \draw (fifthplanet) to[galaxy line] (fifthplanetdescription);
 
   \end{tikzpicture}
 \end{figure*}
