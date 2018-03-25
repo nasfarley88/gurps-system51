@@ -62,7 +62,7 @@
 \define@key{MeleeWeaponCard}{lc}{\def\gurps@wc@lc{#1}}
 \define@key{MeleeWeaponCard}{notes}{\def\gurps@wc@notes{#1}}
 \define@key{MeleeWeaponCard}{points}{\def\gurps@wc@points{#1}}
-\NewDocumentCommand{\MeleeWeaponCard}{m}{%
+\NewDocumentCommand{\MeleeWeaponCard}{O{}m}{%
   \setkeys{MeleeWeaponCard}{
     weaponpic={},
     name=---,
@@ -74,8 +74,10 @@
     notes={},
     points=---,
   }%
-  \setkeys{MeleeWeaponCard}{#1}%
+  \setkeys{MeleeWeaponCard}{#2}%
   \begin{tikzpicture}%
+    % Formatting for the picture
+    #1
     \gurps@wctemplate@preamble{Melee}{4}
     \gurps@wctemplate@line{0}{\gurps@wc@attr{Name}{\gurps@wc@name}};
     \gurps@wctemplate@line{1}{%
@@ -103,7 +105,7 @@
 \define@key{RangedWeaponCard}{lc}{\def\gurps@wc@lc{#1}}
 \define@key{RangedWeaponCard}{notes}{\def\gurps@wc@notes{#1}}
 \define@key{RangedWeaponCard}{points}{\def\gurps@wc@points{#1}}
-\NewDocumentCommand{\RangedWeaponCard}{m}{%
+\NewDocumentCommand{\RangedWeaponCard}{O{\small}m}{%
   \setkeys{RangedWeaponCard}{
     weaponpic={},
     name=---,
@@ -119,9 +121,10 @@
     points=---,
     notes={}
   }%
-  \setkeys{RangedWeaponCard}{#1}%
+  \setkeys{RangedWeaponCard}{#2}%
   \begin{tikzpicture}%
-    \small%
+    % Formatting for the picture
+    #1%
     \gurps@wctemplate@preamble{Ranged}{5}
     \gurps@wctemplate@line{0}{%
       \gurps@wc@attr{Name}{\gurps@wc@name}};
@@ -148,7 +151,7 @@
 \centering%
 bar foo bar
 
-\RangedWeaponCard{
+\RangedWeaponCard[\footnotesize]{
   name={The foo bar},
   acc=12,
   damage={24d-2},
