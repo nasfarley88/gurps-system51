@@ -77,8 +77,13 @@
 \define@key{MeleeWeaponCard}{lc}{\def\gurps@wc@lc{#1}}
 \define@key{MeleeWeaponCard}{notes}{\def\gurps@wc@notes{#1}}
 \define@key{MeleeWeaponCard}{points}{\def\gurps@wc@points{#1}}
-\NewDocumentCommand{\MeleeWeaponCard}{O{}m}{%
+<<<<<<< HEAD
+\define@key{MeleeWeaponCard}{cost}{\def\gurps@wc@cost{#1}\StrLen{#1}[\gurps@wc@cost@strlen]}
 \define@key{MeleeWeaponCard}{weight}{\def\gurps@wc@weight{#1}\StrLen{#1}[\gurps@wc@weight@strlen]}
+\NewDocumentCommand{\MeleeWeaponCard}{m}{%
+=======
+\NewDocumentCommand{\MeleeWeaponCard}{O{}m}{%
+>>>>>>> Added optional text formatting for weapon cards.
   \setkeys{MeleeWeaponCard}{
     weaponpic={},
     name=---,
@@ -124,8 +129,13 @@
 \define@key{RangedWeaponCard}{lc}{\def\gurps@wc@lc{#1}}
 \define@key{RangedWeaponCard}{notes}{\def\gurps@wc@notes{#1}}
 \define@key{RangedWeaponCard}{points}{\def\gurps@wc@points{#1}}
-\NewDocumentCommand{\RangedWeaponCard}{O{\small}m}{%
+<<<<<<< HEAD
+\define@key{RangedWeaponCard}{cost}{\def\gurps@wc@cost{#1}\StrLen{#1}[\gurps@wc@cost@strlen]}
 \define@key{RangedWeaponCard}{weight}{\def\gurps@wc@weight{#1}\StrLen{#1}[\gurps@wc@weight@strlen]}
+\NewDocumentCommand{\RangedWeaponCard}{m}{%
+=======
+\NewDocumentCommand{\RangedWeaponCard}{O{\small}m}{%
+>>>>>>> Added optional text formatting for weapon cards.
   \setkeys{RangedWeaponCard}{
     weaponpic={},
     name=---,
@@ -145,8 +155,11 @@
   }%
   \setkeys{RangedWeaponCard}{#2}%
   \begin{tikzpicture}%
+<<<<<<< HEAD
+=======
     % Formatting for the picture
     #1%
+>>>>>>> Added optional text formatting for weapon cards.
     \gurps@wctemplate@preamble{Ranged}{5}
     \gurps@wctemplate@line{%
       \gurps@wc@attr{Name}{\mbox{\gurps@wc@name}}\xstrut\linebreak%
@@ -173,9 +186,10 @@
 \ifnum\Result>0 FOO BAR \fi
 \noindent%
 \centering%
+<<<<<<< HEAD
 \foreach \i in {1,...,5} {%
   \foreach \j in {1,2} {%
-\RangedWeaponCard[\footnotesize]{
+    \RangedWeaponCard{
       name={Cordite Pistol},
       acc=2,
       damage={3d pi},
@@ -210,6 +224,22 @@
       weaponpic={\includegraphics[width=1.5cm]{images/glocksilenced.pdf}}
     }%
   }\\[-1pt]%
+=======
+bar foo bar
+
+\RangedWeaponCard[\footnotesize]{
+  name={The foo bar},
+  acc=12,
+  damage={24d-2},
+  rof=16,
+  range={1,000/4,800},
+  bulk=1,
+  shots=\(\infty\),
+  rcl=1,
+  st=9,
+  notes={Exotic.},
+  points=90
+>>>>>>> Added optional text formatting for weapon cards.
 }
 \foreach \i in {1,...,5} {%
   \foreach \j in {1,2} {%
