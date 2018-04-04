@@ -15,13 +15,18 @@
 \def\gurps@wc@weaponpic{}
 
 % Sorts tikz preamble. Takes two arguments: type and number of lines.
-\NewDocumentCommand{\gurps@wctemplate@preamble}{mm}{
+\NewDocumentCommand{\gurps@wctemplate@preamble}{m}{
   \def\ro{0.15}
   \pgfmathsetmacro\xmax{8}
   \pgfmathsetmacro\ymax{\xmax/1.618/2}
-  \pgfmathsetmacro\xlineskip{\ymax/#2}
-  \def\xsep{\rule[-.4\baselineskip]{0.3pt}{1.2\baselineskip}}
-  \def\xstrut{\rule[-.4\baselineskip]{0pt}{1.2\baselineskip}}
+  \pgfmathsetmacro\ymaxminusmargin{\ymax cm - 12pt}
+  % \pgfmathsetmacro\xlineskip{\ymax/#2}
+  \def\xsep{\discretionary{}{}{%
+      \rule{1ex}{0pt}%
+      \rule[-.4em]{0.3pt}{1.2em}%
+      \rule{1ex}{0pt}}}
+  % \def\xsep{\discretionary{X}{Y}{Z}}
+  \def\xstrut{\rule[-.4em]{0pt}{1.2em}}
   \coordinate (topcorner) at (\xmax,\ymax);
   \coordinate (picture top right) at (\ymax,\ymax);
   \coordinate (origin) at (0, 0);
@@ -48,9 +53,16 @@
 }
 
 % Takes two args, line number and line content.
-\NewDocumentCommand{\gurps@wctemplate@line}{mm}{%
-  \node [below = {#1*\xlineskip} of picture top right, anchor=north west,yshift=2pt] (name) {%
-    #2};%
+\NewDocumentCommand{\gurps@wctemplate@line}{m}{%
+  \node [below = 0pt of picture top right, anchor=north west,yshift=-2pt,xshift=-0.2cm] (name) {%
+    \begin{minipage}[c][\ymaxminusmargin pt][s]{4.1cm}%
+      \raggedright
+      \baselineskip=0pt plus 1fill
+      \lineskip=0pt plus 1fill
+
+      #1%
+    \end{minipage}%
+  };%
 }
 
 \define@key{MeleeWeaponCard}{weaponpic}{\def\gurps@wc@weaponpic{#1}}
@@ -77,16 +89,14 @@
   \setkeys{MeleeWeaponCard}{#1}%
   \begin{tikzpicture}%
     \gurps@wctemplate@preamble{Melee}{4}
-    \gurps@wctemplate@line{0}{\gurps@wc@attr{Name}{\gurps@wc@name}};
-    \gurps@wctemplate@line{1}{%
-      \gurps@wc@attr{Damage}{\gurps@wc@damage}~\xsep~%
-      \gurps@wc@attr{ST}{\gurps@wc@st}};
-    \gurps@wctemplate@line{2}{%
-      \gurps@wc@attr{Parry}{\gurps@wc@parry}~\xsep~%
-      \gurps@wc@attr{Reach}{\gurps@wc@reach}~\xsep~%
-      \gurps@wc@attr{LC}{\gurps@wc@lc}};
-    \gurps@wctemplate@line{3}{%
-      \gurps@wc@attr{Notes}{\textit{\gurps@wc@notes}}};
+    \gurps@wctemplate@line{%
+      \gurps@wc@attr{Name}{\gurps@wc@name}\\%
+      \gurps@wc@attr{Damage}{\gurps@wc@damage}\xsep%
+      \gurps@wc@attr{ST}{\gurps@wc@st}\xsep%
+      \gurps@wc@attr{Parry}{\gurps@wc@parry}\xsep \gurps@wc@attr{Reach}{\gurps@wc@reach}\xsep%
+      \gurps@wc@attr{LC}{\gurps@wc@lc}\\%
+      \gurps@wc@attr{Notes}{\textit{\gurps@wc@notes}}%
+    };%
   \end{tikzpicture}%
 }
 
@@ -123,22 +133,19 @@
   \begin{tikzpicture}%
     \small%
     \gurps@wctemplate@preamble{Ranged}{5}
-    \gurps@wctemplate@line{0}{%
-      \gurps@wc@attr{Name}{\gurps@wc@name}};
-    \gurps@wctemplate@line{1}{%
-      \gurps@wc@attr{Damage}{\gurps@wc@damage}~\xsep~%
-      \gurps@wc@attr{Acc}{\gurps@wc@acc}~\xsep~%
-      \gurps@wc@attr{RoF}{\gurps@wc@rof}};
-    \gurps@wctemplate@line{2}{%
-      \gurps@wc@attr{Range}{\gurps@wc@range}~\xsep~%
-      \gurps@wc@attr{Bulk}{\gurps@wc@bulk}};
-    \gurps@wctemplate@line{3}{%
-      \gurps@wc@attr{Shots}{\gurps@wc@shots}~\xsep~%
-      \gurps@wc@attr{Rcl}{\gurps@wc@rcl}~\xsep~%
-      \gurps@wc@attr{ST}{\gurps@wc@st}~\xsep~%
-      \gurps@wc@attr{LC}{\gurps@wc@lc}};
-    \gurps@wctemplate@line{4}{%
-      \gurps@wc@attr{Notes}{\gurps@wc@notes}};
+    \gurps@wctemplate@line{%
+      \gurps@wc@attr{Name}{\gurps@wc@name}\\%
+      \gurps@wc@attr{Damage}{\gurps@wc@damage}\xsep%
+      \gurps@wc@attr{Acc}{\gurps@wc@acc}\xsep%
+      \gurps@wc@attr{RoF}{\gurps@wc@rof}
+      \gurps@wc@attr{Range}{\gurps@wc@range}\xsep%
+      \gurps@wc@attr{Bulk}{\gurps@wc@bulk}
+      \gurps@wc@attr{Shots}{\gurps@wc@shots}\xsep%
+      \gurps@wc@attr{Rcl}{\gurps@wc@rcl}\xsep%
+      \gurps@wc@attr{ST}{\gurps@wc@st}\xsep%
+      \gurps@wc@attr{LC}{\gurps@wc@lc}\\%
+      \gurps@wc@attr{Notes}{\gurps@wc@notes}%
+    }
   \end{tikzpicture}%
 }
 \makeatother
