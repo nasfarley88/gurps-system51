@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="US-ASCII" ?>
 <character id="65abd7c3-a997-4284-b156-28fdbcad47fc" version="3">
 	<created_date>03-Feb-2018</created_date>
-	<modified_date>09-Mar-2018 12:56</modified_date>
+	<modified_date>10-Apr-2018 12:44</modified_date>
 	<profile>
 		<player_name>nasfarley88</player_name>
 		<name>Xi Fau</name>
@@ -82,6 +82,12 @@
 			<categories>
 				<category>Advantage</category>
 			</categories>
+			<weapon_bonus>
+				<name compare="is">Broadsword</name>
+				<specialization compare="is anything"></specialization>
+				<level compare="at least">-8</level>
+				<amount per_level="yes">2</amount>
+			</weapon_bonus>
 		</advantage>
 		<advantage version="2">
 			<name>Luck</name>
@@ -271,22 +277,6 @@
 				<modifier>-5</modifier>
 			</default>
 		</skill>
-		<technique version="2" limit="0">
-			<name>Dual-Weapon Attack</name>
-			<difficulty>H</difficulty>
-			<points>0</points>
-			<reference>B230,MA83</reference>
-			<default>
-				<type>Skill</type>
-				<name>Broadsword</name>
-				<modifier>-4</modifier>
-			</default>
-			<categories>
-				<category>Cinematic Techniques</category>
-				<category>Combat/Weapon</category>
-				<category>Melee Combat</category>
-			</categories>
-		</technique>
 		<skill version="2">
 			<name>Observation</name>
 			<difficulty>Per/A</difficulty>
@@ -339,6 +329,26 @@
 			<points>24</points>
 			<notes>Includes: Blow-pipe, Fast-Draw (any weapon), Garrote, Knife, Stealth, and  Thrown Weapon (Dart, Knife, or Shuriken).</notes>
 		</skill>
+		<skill_container version="2" open="yes">
+			<name>Techniques</name>
+			<notes>These are strictly optional but they can be a lot of fun!</notes>
+			<technique version="2" limit="0">
+				<name>Dual-Weapon Attack</name>
+				<difficulty>H</difficulty>
+				<points>0</points>
+				<reference>B230,MA83</reference>
+				<default>
+					<type>Skill</type>
+					<name>Broadsword</name>
+					<modifier>-4</modifier>
+				</default>
+				<categories>
+					<category>Cinematic Techniques</category>
+					<category>Combat/Weapon</category>
+					<category>Melee Combat</category>
+				</categories>
+			</technique>
+		</skill_container>
 	</skill_list>
 	<equipment_list>
 		<equipment version="4" state="equipped">
@@ -452,6 +462,11 @@
 					<specialization>Knife</specialization>
 					<modifier>0</modifier>
 				</default>
+				<default>
+					<type>Skill</type>
+					<name>Wetwork!</name>
+					<modifier>0</modifier>
+				</default>
 			</ranged_weapon>
 			<categories>
 				<category>Melee Weapon</category>
@@ -467,7 +482,7 @@
 			<weight>5 lb</weight>
 			<reference>B271</reference>
 			<melee_weapon>
-				<damage>sw+3 cut</damage>
+				<damage>sw+1 cut</damage>
 				<strength>11</strength>
 				<usage>Swung</usage>
 				<reach>1,2</reach>
@@ -514,7 +529,7 @@
 				</default>
 			</melee_weapon>
 			<melee_weapon>
-				<damage>thr+3 imp</damage>
+				<damage>thr+1 imp</damage>
 				<strength>11</strength>
 				<usage>Thrust</usage>
 				<reach>1</reach>
@@ -560,7 +575,6 @@
 					<modifier>0</modifier>
 				</default>
 			</melee_weapon>
-			<notes>(with added +2 per die for weapon master)</notes>
 			<categories>
 				<category>Melee Weapon</category>
 			</categories>

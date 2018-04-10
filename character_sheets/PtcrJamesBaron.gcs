@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="US-ASCII" ?>
 <character id="e6268f85-be41-429f-b47d-bffc9cae6574" version="3">
 	<created_date>19-Jan-2018</created_date>
-	<modified_date>02-Feb-2018 21:20</modified_date>
+	<modified_date>10-Apr-2018 12:35</modified_date>
 	<profile>
 		<player_name>Kristian</player_name>
 		<campaign>System51</campaign>
@@ -1167,7 +1167,7 @@ Y7WvH+gAAAAASUVORK5CYII=
 	<current_hp>12</current_hp>
 	<FP>0</FP>
 	<current_fp>11</current_fp>
-	<total_points>120</total_points>
+	<total_points>140</total_points>
 	<ST>12</ST>
 	<DX>11</DX>
 	<IQ>12</IQ>
@@ -1326,52 +1326,13 @@ Y7WvH+gAAAAASUVORK5CYII=
 				<amount per_level="yes">1</amount>
 			</attribute_bonus>
 		</advantage>
-		<advantage version="2">
-			<name>Colorblindness</name>
-			<type>Physical</type>
-			<base_points>-10</base_points>
-			<reference>B127</reference>
-			<categories>
-				<category>Disadvantage</category>
-			</categories>
-			<skill_bonus>
-				<name compare="contains">artist</name>
-				<specialization compare="is anything"></specialization>
-				<amount>-1</amount>
-			</skill_bonus>
-			<skill_bonus>
-				<name compare="contains">chemistry</name>
-				<specialization compare="is anything"></specialization>
-				<amount>-1</amount>
-			</skill_bonus>
-			<skill_bonus>
-				<name compare="contains">driving</name>
-				<specialization compare="is anything"></specialization>
-				<amount>-1</amount>
-			</skill_bonus>
-			<skill_bonus>
-				<name compare="is">merchant</name>
-				<specialization compare="is anything"></specialization>
-				<amount>-1</amount>
-			</skill_bonus>
-			<skill_bonus>
-				<name compare="contains">piloting</name>
-				<specialization compare="is anything"></specialization>
-				<amount>-1</amount>
-			</skill_bonus>
-			<skill_bonus>
-				<name compare="contains">tracking</name>
-				<specialization compare="is anything"></specialization>
-				<amount>-1</amount>
-			</skill_bonus>
-		</advantage>
 	</advantage_list>
 	<skill_list>
 		<skill version="2">
 			<name>Karate</name>
 			<encumbrance_penalty_multiplier>1</encumbrance_penalty_multiplier>
 			<difficulty>DX/H</difficulty>
-			<points>5</points>
+			<points>16</points>
 			<reference>B203</reference>
 			<categories>
 				<category>Combat/Weapon</category>
@@ -1390,66 +1351,12 @@ Y7WvH+gAAAAASUVORK5CYII=
 				<amount per_level="yes">1</amount>
 			</weapon_bonus>
 		</skill>
-		<technique version="2" limit="0">
-			<name>Flying Jump Kick</name>
-			<difficulty>H</difficulty>
-			<points>5</points>
-			<reference>MA83</reference>
-			<default>
-				<type>Skill</type>
-				<name>Karate</name>
-				<modifier>-7</modifier>
-			</default>
-			<categories>
-				<category>Cinematic Techniques</category>
-				<category>Combat/Weapon</category>
-				<category>Melee Combat</category>
-			</categories>
-		</technique>
-		<technique version="2" limit="0">
-			<name>Elbow Strike</name>
-			<difficulty>A</difficulty>
-			<points>2</points>
-			<reference>B230,MA71</reference>
-			<default>
-				<type>Skill</type>
-				<name>Karate</name>
-				<modifier>-2</modifier>
-			</default>
-			<categories>
-				<category>Combat/Weapon</category>
-				<category>Melee Combat</category>
-				<category>Technique</category>
-			</categories>
-			<prereq_list all="yes">
-				<skill_prereq has="yes">
-					<name compare="is">Karate</name>
-					<specialization compare="is anything"></specialization>
-				</skill_prereq>
-			</prereq_list>
-		</technique>
-		<technique version="2" limit="5">
-			<name>Disarming</name>
-			<difficulty>H</difficulty>
-			<points>2</points>
-			<reference>B230</reference>
-			<default>
-				<type>Skill</type>
-				<name>Karate</name>
-				<modifier>0</modifier>
-			</default>
-			<categories>
-				<category>Combat/Weapon</category>
-				<category>Melee Combat</category>
-				<category>Technique</category>
-			</categories>
-		</technique>
 		<skill version="2">
 			<name>Guns</name>
 			<specialization>Pistol</specialization>
-			<tech_level>3</tech_level>
+			<tech_level>10</tech_level>
 			<difficulty>DX/E</difficulty>
-			<points>3</points>
+			<points>2</points>
 			<reference>B198</reference>
 			<categories>
 				<category>Combat/Weapon</category>
@@ -1514,37 +1421,95 @@ Y7WvH+gAAAAASUVORK5CYII=
 				<modifier>-2</modifier>
 			</default>
 		</skill>
-		<technique version="2" limit="0">
-			<name>Pole-Vault Kick</name>
-			<difficulty>H</difficulty>
-			<points>2</points>
-			<reference>MA87</reference>
-			<default>
-				<type>Skill</type>
-				<name>Karate</name>
-				<modifier>-4</modifier>
-			</default>
-			<categories>
-				<category>Cinematic Techniques</category>
-				<category>Combat/Weapon</category>
-				<category>Melee Combat</category>
-			</categories>
-			<prereq_list all="yes">
-				<skill_prereq has="yes">
-					<name compare="is">Jumping</name>
-					<specialization compare="is anything"></specialization>
-				</skill_prereq>
-			</prereq_list>
-		</technique>
 		<skill version="2">
 			<name>Jumping</name>
 			<difficulty>DX/E</difficulty>
-			<points>3</points>
+			<points>2</points>
 			<reference>B203</reference>
 			<categories>
 				<category>Athletic</category>
 			</categories>
 		</skill>
+		<skill_container version="2" open="yes">
+			<name>Techniques</name>
+			<notes>These are strictly optional, but can be a lot of fun!</notes>
+			<technique version="2" limit="0">
+				<name>Pole-Vault Kick</name>
+				<difficulty>H</difficulty>
+				<points>0</points>
+				<reference>MA87</reference>
+				<default>
+					<type>Skill</type>
+					<name>Karate</name>
+					<modifier>-4</modifier>
+				</default>
+				<categories>
+					<category>Cinematic Techniques</category>
+					<category>Combat/Weapon</category>
+					<category>Melee Combat</category>
+				</categories>
+				<prereq_list all="yes">
+					<skill_prereq has="yes">
+						<name compare="is">Jumping</name>
+						<specialization compare="is anything"></specialization>
+					</skill_prereq>
+				</prereq_list>
+			</technique>
+			<technique version="2" limit="5">
+				<name>Disarming</name>
+				<difficulty>H</difficulty>
+				<points>0</points>
+				<reference>B230</reference>
+				<default>
+					<type>Skill</type>
+					<name>Karate</name>
+					<modifier>0</modifier>
+				</default>
+				<categories>
+					<category>Combat/Weapon</category>
+					<category>Melee Combat</category>
+					<category>Technique</category>
+				</categories>
+			</technique>
+			<technique version="2" limit="0">
+				<name>Elbow Strike</name>
+				<difficulty>A</difficulty>
+				<points>0</points>
+				<reference>B230,MA71</reference>
+				<default>
+					<type>Skill</type>
+					<name>Karate</name>
+					<modifier>-2</modifier>
+				</default>
+				<categories>
+					<category>Combat/Weapon</category>
+					<category>Melee Combat</category>
+					<category>Technique</category>
+				</categories>
+				<prereq_list all="yes">
+					<skill_prereq has="yes">
+						<name compare="is">Karate</name>
+						<specialization compare="is anything"></specialization>
+					</skill_prereq>
+				</prereq_list>
+			</technique>
+			<technique version="2" limit="0">
+				<name>Flying Jump Kick</name>
+				<difficulty>H</difficulty>
+				<points>2</points>
+				<reference>MA83</reference>
+				<default>
+					<type>Skill</type>
+					<name>Karate</name>
+					<modifier>-7</modifier>
+				</default>
+				<categories>
+					<category>Cinematic Techniques</category>
+					<category>Combat/Weapon</category>
+					<category>Melee Combat</category>
+				</categories>
+			</technique>
+		</skill_container>
 	</skill_list>
 	<equipment_list>
 		<equipment version="4" state="equipped">
@@ -1636,7 +1601,7 @@ Y7WvH+gAAAAASUVORK5CYII=
 			</categories>
 		</equipment>
 	</equipment_list>
-	<print_settings printer="MG6100-series" units="in">
+	<print_settings printer="Photosmart_C4500" units="in">
 		<orientation>portrait</orientation>
 		<width>8.267716407775879</width>
 		<height>11.692913055419922</height>
