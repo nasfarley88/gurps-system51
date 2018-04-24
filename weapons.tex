@@ -1,11 +1,11 @@
-\documentclass{article}
-\usepackage[margin=1cm]{geometry}
-\usepackage{tikz}
-\usepackage{graphicx}
-\usepackage{xparse}
-\usepackage[sfdefault,condensed]{universalis}
-\usepackage{keyval}
-\usepackage{xstring}
+% \documentclass{article}
+% \usepackage[margin=1cm]{geometry}
+\RequirePackage{tikz}
+\RequirePackage{graphicx}
+\RequirePackage{xparse}
+% \usepackage[sfdefault,condensed]{universalis}
+\RequirePackage{keyval}
+\RequirePackage{xstring}
 \usetikzlibrary{positioning}
 
 \makeatletter
@@ -20,7 +20,13 @@
   \pgfmathsetmacro\xmax{8}
   \pgfmathsetmacro\ymax{\xmax/1.618/2}
   \pgfmathsetmacro\xlineskip{\ymax/#2}
-  \def\xsep{\rule[-.4\baselineskip]{0.3pt}{1.2\baselineskip}}
+  % \def\xsep{\rule[-.4\baselineskip]{0.3pt}{1.2\baselineskip}}
+  \def\xsep{%
+    \discretionary{}{}{%
+      \rule{1ex}{0pt}%
+      \rule[-.4\baselineskip]{0.3pt}{1.2\baselineskip}%
+      \rule{1ex}{0pt}%
+  }}
   \def\xstrut{\rule[-.4\baselineskip]{0pt}{1.2\baselineskip}}
   \coordinate (topcorner) at (\xmax,\ymax);
   \coordinate (picture top right) at (\ymax,\ymax);
@@ -38,8 +44,8 @@
   (points cost) {\scalebox{1.5}{%
       \renewcommand{\arraystretch}{0.7}
       \begin{tabular}{@{}c@{}}%
-        \tiny \noexpandarg\IfInteger{\gurps@wc@points}{Points:}{}
-        \\%
+        \IfInteger{\gurps@wc@points}{\tiny Points:\tabularnewline}{}
+        % \\%
         \Huge \gurps@wc@points \\\hline%
         \tiny Type: \\%
         #1%
@@ -61,7 +67,7 @@
 \define@key{MeleeWeaponCard}{reach}{\def\gurps@wc@reach{#1}}
 \define@key{MeleeWeaponCard}{lc}{\def\gurps@wc@lc{#1}}
 \define@key{MeleeWeaponCard}{notes}{\def\gurps@wc@notes{#1}}
-\define@key{MeleeWeaponCard}{points}{\def\gurps@wc@points{#1}}
+\define@key{MeleeWeaponCard}{points}{\edef\gurps@wc@points{#1}}
 \NewDocumentCommand{\MeleeWeaponCard}{O{}m}{%
   \setkeys{MeleeWeaponCard}{
     weaponpic={},
@@ -104,7 +110,7 @@
 \define@key{RangedWeaponCard}{st}{\def\gurps@wc@st{#1}}
 \define@key{RangedWeaponCard}{lc}{\def\gurps@wc@lc{#1}}
 \define@key{RangedWeaponCard}{notes}{\def\gurps@wc@notes{#1}}
-\define@key{RangedWeaponCard}{points}{\def\gurps@wc@points{#1}}
+\define@key{RangedWeaponCard}{points}{\edef\gurps@wc@points{#1}}
 \NewDocumentCommand{\RangedWeaponCard}{O{\small}m}{%
   \setkeys{RangedWeaponCard}{
     weaponpic={},
@@ -118,7 +124,7 @@
     rcl=---,
     st=---,
     lc=---,
-    points=---,
+    points={},
     notes={}
   }%
   \setkeys{RangedWeaponCard}{#2}%
@@ -126,79 +132,99 @@
     % Formatting for the picture
     #1%
     \gurps@wctemplate@preamble{Ranged}{5}
-    \gurps@wctemplate@line{0}{%
-      \gurps@wc@attr{Name}{\gurps@wc@name}};
-    \gurps@wctemplate@line{1}{%
-      \gurps@wc@attr{Damage}{\gurps@wc@damage}~\xsep~%
-      \gurps@wc@attr{Acc}{\gurps@wc@acc}~\xsep~%
-      \gurps@wc@attr{RoF}{\gurps@wc@rof}};
-    \gurps@wctemplate@line{2}{%
-      \gurps@wc@attr{Range}{\gurps@wc@range}~\xsep~%
-      \gurps@wc@attr{Bulk}{\gurps@wc@bulk}};
-    \gurps@wctemplate@line{3}{%
-      \gurps@wc@attr{Shots}{\gurps@wc@shots}~\xsep~%
-      \gurps@wc@attr{Rcl}{\gurps@wc@rcl}~\xsep~%
-      \gurps@wc@attr{ST}{\gurps@wc@st}~\xsep~%
-      \gurps@wc@attr{LC}{\gurps@wc@lc}};
-    \gurps@wctemplate@line{4}{%
-      \gurps@wc@attr{Notes}{\gurps@wc@notes}};
+    \pgfmathsetmacro{\mpymax}{\ymax*0.90}
+    \node [below = 0pt of picture top right, anchor=north west] (name) {%
+      \begin{minipage}[t][\mpymax cm][s]{3.5cm}%
+        \raggedright%
+        \baselineskip=1\baselineskip plus 1fill % stretch as much as needed
+        \lineskip=0pt plus 1fill % just for safety
+        
+        \gurps@wc@attr{Name}{\gurps@wc@name}\\%
+        \gurps@wc@attr{Damage}{\gurps@wc@damage}\xsep%
+        \gurps@wc@attr{Acc}{\gurps@wc@acc}\xsep%
+        \gurps@wc@attr{RoF}{\gurps@wc@rof}\xsep%
+        \gurps@wc@attr{Range}{\gurps@wc@range}\xsep%
+        \gurps@wc@attr{Bulk}{\gurps@wc@bulk}\xsep%
+        \gurps@wc@attr{Shots}{\gurps@wc@shots}\xsep%
+        \gurps@wc@attr{Rcl}{\gurps@wc@rcl}\xsep%
+        \gurps@wc@attr{ST}{\gurps@wc@st}\xsep%
+        \gurps@wc@attr{LC}{\gurps@wc@lc}\\%
+        \gurps@wc@attr{Notes}{\gurps@wc@notes}%
+      \end{minipage}%
+    };%
+    % \gurps@wctemplate@line{0}{%
+    %   \gurps@wc@attr{Name}{\gurps@wc@name}};
+    % \gurps@wctemplate@line{1}{%
+    %   \gurps@wc@attr{Damage}{\gurps@wc@damage}~\xsep~%
+    %   \gurps@wc@attr{Acc}{\gurps@wc@acc}~\xsep~%
+    %   \gurps@wc@attr{RoF}{\gurps@wc@rof}};
+    % \gurps@wctemplate@line{2}{%
+    %   \gurps@wc@attr{Range}{\gurps@wc@range}~\xsep~%
+    %   \gurps@wc@attr{Bulk}{\gurps@wc@bulk}};
+    % \gurps@wctemplate@line{3}{%
+    %   \gurps@wc@attr{Shots}{\gurps@wc@shots}~\xsep~%
+    %   \gurps@wc@attr{Rcl}{\gurps@wc@rcl}~\xsep~%
+    %   \gurps@wc@attr{ST}{\gurps@wc@st}~\xsep~%
+    %   \gurps@wc@attr{LC}{\gurps@wc@lc}};
+    % \gurps@wctemplate@line{4}{%
+    %   \gurps@wc@attr{Notes}{\gurps@wc@notes}};
   \end{tikzpicture}%
 }
 \makeatother
 
-\begin{document}%
-\noindent%
-\centering%
-bar foo bar
+% \begin{document}%
+% \noindent%
+% \centering%
+% bar foo bar
 
-\RangedWeaponCard[\footnotesize]{
-  name={The foo bar},
-  acc=12,
-  damage={24d-2},
-  rof=16,
-  range={1,000/4,800},
-  bulk=1,
-  shots=\(\infty\),
-  rcl=1,
-  st=9,
-  notes={Exotic.},
-  points=90
-}
-\newpage
-\NewDocumentCommand{\ul}{m}{\rule[-2pt]{#1}{0.3pt}}%
-\foreach \i in {1,...,10} {%
-  \foreach \j in {1,2} {%
-    \RangedWeaponCard{
-      name=\ul{8.5em},
-      damage=\ul{2em},
-      acc=\ul{1em},
-      rof=\ul{1em},
-      range=\ul{4em},
-      bulk=\ul{1em},
-      shots=\ul{2em},
-      rcl=\ul{1ex},
-      st=\ul{2ex},
-      lc=\ul{1ex},
-      points=\rule{0pt}{1ex},
-      notes=\ul{8.5em}
-    }%
-  }\\[-1pt]%
-}
-\foreach \i in {1,...,10} {%
-  \foreach \j in {1,2} {%
-    \MeleeWeaponCard{
-      name=\ul{8.5em},
-      parry=\ul{1em},
-      damage=\ul{2em},
-      reach=\ul{2em},
-      st=\ul{2ex},
-      lc=\ul{1ex},
-      points=\rule{0pt}{1ex},
-      notes=\ul{8.5em}
-    }%
-  }\\[-1pt]%
-}
-\end{document}
+% \RangedWeaponCard[\footnotesize]{
+%   name={The foo bar},
+%   acc=12,
+%   damage={24d-2},
+%   rof=16,
+%   range={1,000/4,800},
+%   bulk=1,
+%   shots=\(\infty\),
+%   rcl=1,
+%   st=9,
+%   notes={Exotic.},
+%   points=90
+% }
+% \newpage
+% \NewDocumentCommand{\ul}{m}{\rule[-2pt]{#1}{0.3pt}}%
+% \foreach \i in {1,...,10} {%
+%   \foreach \j in {1,2} {%
+%     \RangedWeaponCard{
+%       name=\ul{8.5em},
+%       damage=\ul{2em},
+%       acc=\ul{1em},
+%       rof=\ul{1em},
+%       range=\ul{4em},
+%       bulk=\ul{1em},
+%       shots=\ul{2em},
+%       rcl=\ul{1ex},
+%       st=\ul{2ex},
+%       lc=\ul{1ex},
+%       points=\rule{0pt}{1ex},
+%       notes=\ul{8.5em}
+%     }%
+%   }\\[-1pt]%
+% }
+% \foreach \i in {1,...,10} {%
+%   \foreach \j in {1,2} {%
+%     \MeleeWeaponCard{
+%       name=\ul{8.5em},
+%       parry=\ul{1em},
+%       damage=\ul{2em},
+%       reach=\ul{2em},
+%       st=\ul{2ex},
+%       lc=\ul{1ex},
+%       points=\rule{0pt}{1ex},
+%       notes=\ul{8.5em}
+%     }%
+%   }\\[-1pt]%
+% }
+% \end{document}
 
 %%% Local Variables:
 %%% mode: latex

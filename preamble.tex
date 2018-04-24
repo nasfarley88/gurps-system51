@@ -18,6 +18,8 @@
 \usepackage{enumitem}
 \usepackage{multicol}
 
+\input{weapons}
+
 \renewcommand{\familydefault}{\sfdefault}
 
 % \RenewDocumentEnvironment{charactertraitlist}{}{%
@@ -135,15 +137,20 @@
 }
 
 \NewDocumentCommand{\gurps@ia@totalpoints}{o}{%
-  \IfValueTF{#1}{\luadirect{
-      tex.sprint(tostring(ia.getTotalPoints(_INNATE_ATTACK[ [[#1]] ])))
-    }}{\luadirect{
-      tex.sprint(tostring(ia.getTotalPoints(_INNATE_ATTACK[_INNATE_ATTACK_KEY])))
-    }}
+  \IfValueTF{#1}{\luadirect{%
+      tex.sprint(tostring(ia.getTotalPoints(_INNATE_ATTACK[ [[#1]] ])))%
+    }}{\luadirect{%
+      tex.sprint(tostring(ia.getTotalPoints(_INNATE_ATTACK[_INNATE_ATTACK_KEY])))%
+    }}%
 }
 
-\NewDocumentCommand{\InnateAttackTotalPoints}{}{%
+\NewDocumentCommand{\InnateAttackTotalPoints}{s}{%
+  % starred is number only
+  \IfBooleanTF{#1}{%
+    \gurps@ia@totalpoints%
+  }{%
   \gurps@ia@totalpoints~points\xspace%
+  }%
 }
 
 
