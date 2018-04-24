@@ -5,10 +5,11 @@
 
 \NewDocumentCommand{\GCCardPrintImportantStuff}{}{%
   \begin{center}
-    \Large\bfseries\CharacterName
+    \Large\bfseries\GCGet{Name}\GCResult
   \end{center}
-  \textbf{\strut Base stats} \gurps@char@basicattributes\\
-  \textbf{\strut More stats} \gurps@char@secondarycharacteristics\\
+  \tiny
+  \textbf{\strut Base stats} \gurps@char@basicattributes;
+  \gurps@char@secondarycharacteristics\\
   \textbf{\strut Even more stats} \gurps@char@properties\\
   \textbf{\strut Traits} \gurps@char@traits\\
   \textbf{\strut Skills} \gurps@char@skills\\
@@ -22,8 +23,21 @@
   %
   \luadirect{%
     function getlevel(x)
-      if filter({name=x}, get_character(_GCHARACTERKEY)) then
-        return filter({name=x}, get_character(_GCHARACTERKEY))[1].level
+      if cget(x) then
+        return cget(x).level
+      else
+      for k,v in pairs(_GCHARACTERS) do
+        print(k)
+        print(v)
+        for i,j in pairs(v) do
+          print(k)
+          print(i)
+          print(j.name)
+        end
+      end
+      tex.error('Unable to get level from ' .. x
+      .. '. Character key is: ' .. _GCHARACTERKEY
+      .. ' and its ' .. x .. ' object is ' .. cget('ST'))
       end
     end
 

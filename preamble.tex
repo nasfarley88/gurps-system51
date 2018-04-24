@@ -6,7 +6,8 @@
 \usepackage{luacode}
 \luadirect{require("main.lua")}
 \luadirect{require("lualibs.lua")}
-\usepackage{libertine}
+% \usepackage{libertine}
+\usepackage[sfdefault,condensed]{universalis}
 \usepackage{microtype}
 \usepackage{xparse}
 \usepackage{multicol}
@@ -21,7 +22,7 @@
 % Custom packages
 \usepackage{gurps-npccard}
 
-\renewcommand{\familydefault}{\sfdefault}
+% \renewcommand{\familydefault}{\sfdefault}
 
 % \RenewDocumentEnvironment{charactertraitlist}{}{%
 %   \begin{itemize}[noitemsep]%
@@ -248,6 +249,9 @@
 
 \title{\system{51} source book}
 \author{Nathanael~Farley, David~Sumner, et al.}
+
+\usepackage{ragged2e}
+\RaggedRight
 
 %%% Local Variables:
 %%% mode: latex

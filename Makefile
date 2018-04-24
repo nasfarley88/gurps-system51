@@ -26,6 +26,8 @@ all: $(PDFS)
 %.gcx: character_sheets/%.gcs
 	gcs $< -text -text_template=$(GCS_TEMPLATE)
 	mv character_sheets/$@ ./
+  # Replace % with \% inside gcx files
+	sed -i 's/%/\\%/g' $@
 
 clean:
   # Sometimes I compile in the root directory, this needs cleaning before git commtting
