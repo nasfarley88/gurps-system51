@@ -1,0 +1,34 @@
+\begin{character}[Armed Mook]
+\ST{10}
+\DX{10}
+\IQ{10}
+\HT{10}
+
+\HP{10}
+\FP{10} 
+\Per{10}
+\Will{10}
+
+\thr{1d-2}
+\sw{1d}
+
+\basicspeed{5}
+\basicmove{5}
+
+
+
+
+
+
+\skill{Guns/TL10 (Pistol)}{10}
+
+\skill{Brawling}{12}
+
+\end{character}
+
+\def\Attacks{
+Natural (Kick) -- \fbox{\textbf{10}} -- Parry: No -- 1d-1 cr\\Natural (Kick w/Boots) -- \fbox{\textbf{10}} -- Parry: No -- 1d cr\\Natural (Punch) -- \fbox{\textbf{12}} -- Parry: 9 -- 1d-2 cr\\
+
+Cordite pistol -- \fbox{\textbf{10}} -- 3d pi\\
+}
+\def\CharacterName{Armed Mook}

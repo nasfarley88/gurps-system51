@@ -1,0 +1,121 @@
+\documentclass[a4paper,landscape]{article}
+
+\usepackage[margin=1cm]{geometry}
+\usepackage{tikz}
+\usepackage{luacode}
+\LuaCodeDebugOn
+\usepackage{gurps}
+\usepackage{libertine}
+
+\usepackage{shapeparnode}
+
+\makeatletter
+\NewDocumentCommand{\PrintImportantStuff}{}{%
+  \begin{center}
+    \Large\bfseries\CharacterName
+  \end{center}
+  \parbox{2.9in}{\raggedright\charactersection*{Basic Attributes}
+  \gurps@char@basicattributes}
+  \parbox{2.9in}{\raggedright\charactersection*{Secondary Characteristics}
+  \gurps@char@secondarycharacteristics}
+  \parbox{2.9in}{\raggedright\charactersection*{Other}
+  \gurps@char@properties}
+  \parbox{2.9in}{\raggedright\charactersection*{Advantages}
+  \gurps@char@advantages}
+  \parbox{2.9in}{\raggedright\charactersection*{Disadvantages}
+  \gurps@char@disadvantages}
+  \parbox{2.9in}{\raggedright\charactersection*{Skills}
+  \gurps@char@skills}
+  % \parbox{2.9in}{\raggedright\charactersection*{Spells}
+  % \gurps@char@spells}
+}
+
+\NewDocumentCommand{\gurps@chargetattrlevel}{m}{%
+ \luadirect{%
+    y = filter({name=\luastring{#1}}, get_character(_GCHARACTERKEY)) %
+    if not y then %
+      tex.error(\luastring{Sorry, couldn't find #1. /shrug}) %
+    end %
+ %
+    x = y[1] %
+    if x then %
+      tex.sprint(x.level) %
+    else
+    tex.error('oh dear..')
+    end %
+  }%
+}
+
+\NewDocumentCommand{\printcharactercard}{m}{
+  \SetCharacterKey{#1}%
+  %
+  \luadirect{%
+    function getlevel(x)
+      if filter({name=x}, get_character(_GCHARACTERKEY)) then
+        return filter({name=x}, get_character(_GCHARACTERKEY))[1].level
+      end
+    end
+  }%
+  %
+  \begin{tikzpicture}[x=1in, y=1in]
+    \draw[draw=none,use as bounding box] (0,0) -- (5, 3);
+    \draw (0,0) rectangle (1, 3);
+
+    \node[anchor=north west] at (1,3) {%
+      \begin{minipage}[t][2.9in][s]{3in}%
+        \raggedright\footnotesize
+        \baselineskip=0pt plus 1fill
+        \lineskip=0pt plus 1fill
+
+        \PrintImportantStuff
+        % TODO define attacks properly!
+        \Attacks
+        % \charactersection*{Notes} \dotfill\linebreak
+        % \null \dotfill\linebreak
+        % \null \dotfill
+      \end{minipage}%
+    };
+
+    \node[anchor=north west] at (4,3) {%
+      \begin{minipage}[t][3in][s]{1in}
+        \centering
+        \baselineskip=0pt plus 1fill
+        \lineskip=0pt plus 1fill
+        \foreach \i in {1,0,...,-5} {
+          \i ×HP: 
+          \parbox{2em}{\raggedleft\luadirect{tex.sprint("" .. (\i * getlevel('HP')))}}
+          \\
+        }
+        \textbf{\Large HP}\\[1ex]
+        \foreach \i in {1,2,...,6} {
+          \rule{0.5cm}{0.3pt}\rule{0.3cm}{0pt}\rule{0.5cm}{0.3pt}\rule{0.3cm}{0pt}\rule{0.5cm}{0.3pt}\\
+        }
+      \end{minipage}
+    };
+  \end{tikzpicture}
+  \ResetCharacterKey
+}
+
+\makeatother
+
+\begin{document}
+\def\Attacks{foobar!}
+\input{PtcrJamesBaron.gct}
+\newpage
+\printcharactercard{James Baron}
+\newpage
+\input{sniper_mook.gct}
+\newpage
+\printcharactercard{Sniper Mook}
+\newpage
+\input{armed_mook.gct}
+\newpage
+\noindent
+\printcharactercard{Armed Mook}\printcharactercard{Armed Mook}\\[2em]
+\printcharactercard{Armed Mook}\printcharactercard{Armed Mook}
+\end{document}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "npccard"
+%%% End:
