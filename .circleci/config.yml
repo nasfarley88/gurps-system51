@@ -6,6 +6,12 @@ jobs:
     steps:
       - checkout
       - run:
+          name: Checkout GCS
+          command: wget https://github.com/richardwilkes/gcs/releases/download/gcs-4.10.0/gcs-4.10.0-linux.zip && unzip *.zip -d /tmp/gcs
+      - run:
+          name: Add GCS to path!
+          command: ln -s (readlink -f /tmp/gcs/*/gcs) /usr/bin/gcs
+      - run:
           name: Checkout GURPS LaTeX package
           command: git -C / clone https://github.com/nasfarley88/gurps-latex-package
       - run:
@@ -14,9 +20,6 @@ jobs:
       - run:
           name: Make the projects
           command: make -j$(nproc)
-      - run:
-          name: Checkout GCS
-          command: wget https://github.com/richardwilkes/gcs/releases/download/gcs-4.10.0/gcs-4.10.0-linux.zip && unzip *.zip -d /tmp/gcs
       - run:
           name: PDF the character sheets
           command: cd character_sheets/ && /tmp/gcs/gcs-4.10.0-linux/gcs -pdf *.gcs
