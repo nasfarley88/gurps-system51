@@ -1,0 +1,1 @@
+$lualatex = 'lualatex %O -shell-escape -interaction=nonstopmode %S';
