@@ -10,7 +10,7 @@ jobs:
           command: wget https://github.com/richardwilkes/gcs/releases/download/gcs-4.10.0/gcs-4.10.0-linux.zip && unzip *.zip -d /tmp/gcs
       - run:
           name: Add GCS to path!
-          command: ln -s (readlink -f /tmp/gcs/*/gcs) /usr/bin/gcs
+          command: ln -s /tmp/gcs/gcs-4.10.0-linux/gcs /usr/bin/gcs
       - run:
           name: Checkout GURPS LaTeX package
           command: git -C / clone https://github.com/nasfarley88/gurps-latex-package
