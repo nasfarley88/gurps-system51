@@ -1,14 +1,17 @@
+\PassOptionsToPackage{table}{xcolor}
 \documentclass[a4paper,twocolumn,oneside,12pt]{memoir}
 % \documentclass[a4paper,oneside]{memoir}
 
 \usepackage[british]{babel}
 \usepackage{gurps}
+\usepackage{xtab}
 \usepackage{luacode}
 \luadirect{require("main.lua")}
 \luadirect{require("lualibs.lua")}
 % \usepackage{libertine}
 \usepackage[sfdefault,condensed]{universalis}
 \usepackage{microtype}
+\usepackage[table]{xcolor}
 \usepackage{xparse}
 \usepackage{multicol}
 \usepackage{graphicx}
@@ -249,9 +252,6 @@
 
 \title{\system{51} source book}
 \author{Nathanael~Farley, David~Sumner, et al.}
-
-\usepackage{ragged2e}
-\RaggedRight
 
 %%% Local Variables:
 %%% mode: latex
