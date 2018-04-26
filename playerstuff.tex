@@ -40,114 +40,43 @@ the hope of embuing individuals with some degree of this new power. However, if
 they knew the source of this power, they would not be so quick to reach for it
 \ldots{}.
 
+% I have two threads here: nanites and Chaos. But first, how did it all begin?
 
-\section{Galaxy map}
-\label{sec:galaxy-map}
+\section{Leaving Earth}
+\label{sec:leaving-earth}
 
-The map of the galaxy as it currently stands can be found at \autoref{fig:mapofthegalaxy}.
+About 100~000 years ago during the 21st century, Earth was facing real
+overpopulation. Europeans had started to colonise Africa to just to find enough
+land to live on; Africans started to fight back against this new colonialism.
+America had started to aggressively expand it's borders. During this politically
+charged time, a company called SpaceEze developed a long term colony ship called
+Hermes~1 to go to Alpha~Centauri, now known as \system{1}. The ship was hailed
+as `a new beginning' for those that could afford to go.
 
-\begin{figure*}
-  \centering
-  \begin{tikzpicture}
-    \node at (0,0) {{\transparent{0.6}%
-        \includegraphics[width=17cm]{galaxy-B-3-neg-released-by-cc-17-cm}}};
-    \galaxymappoint{1}{1}{\system{51}}
-    \galaxymappoint{1.4}{0.9}{\system{37}}[1]
-    \galaxymappoint{1}{-2}{Earth}
-  \end{tikzpicture}
-  \caption{Map of the galaxy. Milky way galaxy photo from
-    \url{http://www.enderra.com/2012/02/01/milky-galaxy-black-white/},
-    annotations added.}
-  \label{fig:mapofthegalaxy}
-\end{figure*}
+Hermes~1 was the first of many colony ships to leave. As technology improved,
+many colony ships were sent out to the stars. Initially, the journey took 500
+years but as technology progressed and ships got faster, the average journey
+time halved, and halved again, until it was possible to travel at close to the
+speed of light, arriving in an average of 10 years. Due to the relativistic
+nature of the travel, for the colonist, this trip would feel like only a few
+months!\footnote{Assuming that the ship is travelling over \(0.9c\).}
 
-\section{\system{51} map}
-\label{sec:system51-map}
+As time went on, more and more systems were colonised across the galaxy.
+Communication between systems was slow (on account of messages travelling at the
+speed of light for 10 years, even to contact a neighbouring system) and slowly
+humanity became fragmented. Once the systems hit the 30s and 40s, Earth was a
+long distant memory whose only evidence were old transmissions that kids tuned
+into like AM radios of the 21st century.
 
-% \NewDocumentCommand{\systembaseradius}{}{10}
-\NewDocumentCommand{\systemarc}{O{8}mO{}}{
-    \pgfmathsetmacro{\angleone}{90+asin(#1/#2)};
-    \pgfmathsetmacro{\angletwo}{90-asin(#1/#2)};
-    \pgfmathsetmacro{\systembaseradius}{10};
-    \draw (-#1, {#2-\systembaseradius}) arc (\angleone:\angletwo:#2) #3;
-}
+Technology stagnated in some placed and outwardly regressed in others. The laws
+of physics constantly impeded progress meaning that technology failed to
+progress much beyond 23rd century Earth for much of humanity. (There are
+unsubstanitated rumours that the systems around Earth have made significant
+breakthrough's but any signal/travel there and back is too long for anyone to
+find out.)
 
-\NewDocumentCommand{\asteroidarc}{O{8}mm}{
+\system{51} was founded ...
 
-    \pgfmathsetmacro{\angleone}{90+asin(#1/#2)};
-    \pgfmathsetmacro{\angletwo}{90-asin(#1/#2)};
-    \pgfmathsetmacro{\systembaseradius}{10};
-
-    \pgfmathsetmacro{\anglethree}{90-asin(#1/#3)};
-    \pgfmathsetmacro{\anglefour}{90+asin(#1/#3)};
-
-    \fill[pattern=north west lines] (-#1, {#2-\systembaseradius}) arc (\angleone:\angletwo:#2)
-    -- (#1, {#3-\systembaseradius}) arc (\anglethree:\anglefour:#3)
-    -- cycle;
-}
-
-\begin{figure*}
-  \centering
-  \NewDocumentCommand{\galaxyPlanetDescription}{mm}{\centering
-    #1\\[1ex]%
-    \itshape #2%
-  }
-  \NewDocumentCommand{\tmpXyronDescription}{}{%
-    \galaxyPlanetDescription{Xyron}{A feudal world, similar to ancient Japan.}%
-  }
-  \NewDocumentCommand{\tmpTechopiaDescription}{}{%
-    \galaxyPlanetDescription{Techopia}{A large world covered in corporations.
-      Largely considered to be the de facto capital of \system{51}.}%
-  }
-  \begin{tikzpicture}
-    % OK, let's start at the bottom with a sun.
-    \pgfmathsetmacro{\halfwidth}{8}
-    % \pgfmathsetmacro{\leftedge}{-5};
-    % \pgfmathsetmacro{\rightedge}{5};
-    \pgfmathsetmacro{\radius}{10};
-
-    \node (origin) at (0,-\radius) {origin};
-    \node (sunleft) at (-\halfwidth, 0) {(-\halfwidth, 0)};
-    \node (sunright) at (\halfwidth, 0) {(\halfwidth, 0)};
-
-    \systemarc{15}[coordinate[midway] (sun)];
-    \asteroidarc{36}{37};
-    \systemarc{19}[coordinate[midway] (firstplanet)];
-    \systemarc{21.5}[coordinate [midway] (secondplanet)];
-    \systemarc{25.5}[coordinate [midway] (thirdplanet)];
-    \systemarc{32}[coordinate [midway] (fourthplanet)];
-    \asteroidarc{36}{37.5};
-    % \systemarc{39}[coordinate [midway] (fifthplanet)];
-
-    \filldraw (firstplanet) circle (2mm);
-    \filldraw (secondplanet) circle (3mm);
-    \filldraw (thirdplanet) circle (5mm);
-    \filldraw (fourthplanet) circle (2mm);
-    % \filldraw (fifthplanet) circle (4mm);
-
-    \filldraw (fourthplanet) ++ (.3,.3) circle (1mm);
-
-    \node[above = 0.2cm of sun] (sundescription) {\textsc{Sun}};
-
-    \node[below right = 1.5cm and 4cm of firstplanet] (firstplanetdescription)  {The first planet};
-    \draw (firstplanet) to[galaxy line] (firstplanetdescription);
-
-    \node[above left = 0.5cm and 4cm of secondplanet] (secondplanetdescription)  {%
-      \parbox{4cm}{\tmpXyronDescription}};
-    \draw (secondplanet) to[galaxy line] (secondplanetdescription);
-
-    \node[above left = 2cm and 4cm of thirdplanet] (thirdplanetdescription)  {%
-      \parbox{4cm}{\tmpTechopiaDescription}};
-    \draw (thirdplanet) to[galaxy line] (thirdplanetdescription);
-
-    \node[below right = 2cm and 4cm of fourthplanet] (fourthplanetdescription)  {The fourth planet and it's moon};
-    \draw (fourthplanet) to[galaxy line] (fourthplanetdescription);
-
-    % \node[above right = 2cm and 4cm of fifthplanet] (fifthplanetdescription)  {The fifth planet};
-    % \draw (fifthplanet) to[galaxy line] (fifthplanetdescription);
-
-  \end{tikzpicture}
-\end{figure*}
 
 \section{Nanite wars}
 \label{sec:nanite-wars}
@@ -982,12 +911,118 @@ This campaign will use simplified \gurps combat. Basics are:
 \item If a player can name a rule and it's effects, it can be used
 \end{itemize}
 
-\begin{proposal}{Single hit major wounds}
-  This won't make much sense unless you're already familiar with \gurps
-  \begin{itemize}
-  \item Single hit major wounds
-  \end{itemize}
-\end{proposal}
+
+\section{Maps}
+\label{sec:maps}
+
+
+\subsection{Galaxy map}
+\label{sec:galaxy-map}
+
+The map of the galaxy as it currently stands can be found at \autoref{fig:mapofthegalaxy}.
+
+\begin{figure*}
+  \centering
+  \begin{tikzpicture}
+    \node at (0,0) {{\transparent{0.6}%
+        \includegraphics[width=17cm]{galaxy-B-3-neg-released-by-cc-17-cm}}};
+    \galaxymappoint{1}{1}{\system{51}}
+    \galaxymappoint{1.4}{0.9}{\system{37}}[1]
+    \galaxymappoint{1}{-2}{Earth}
+  \end{tikzpicture}
+  \caption{Map of the galaxy. Milky way galaxy photo from
+    \url{http://www.enderra.com/2012/02/01/milky-galaxy-black-white/},
+    annotations added.}
+  \label{fig:mapofthegalaxy}
+\end{figure*}
+
+\subsection{\system{51} map}
+\label{sec:system51-map}
+
+% \NewDocumentCommand{\systembaseradius}{}{10}
+\NewDocumentCommand{\systemarc}{O{8}mO{}}{
+    \pgfmathsetmacro{\angleone}{90+asin(#1/#2)};
+    \pgfmathsetmacro{\angletwo}{90-asin(#1/#2)};
+    \pgfmathsetmacro{\systembaseradius}{10};
+    \draw (-#1, {#2-\systembaseradius}) arc (\angleone:\angletwo:#2) #3;
+}
+
+\NewDocumentCommand{\asteroidarc}{O{8}mm}{
+
+    \pgfmathsetmacro{\angleone}{90+asin(#1/#2)};
+    \pgfmathsetmacro{\angletwo}{90-asin(#1/#2)};
+    \pgfmathsetmacro{\systembaseradius}{10};
+
+    \pgfmathsetmacro{\anglethree}{90-asin(#1/#3)};
+    \pgfmathsetmacro{\anglefour}{90+asin(#1/#3)};
+
+    \fill[pattern=north west lines] (-#1, {#2-\systembaseradius}) arc (\angleone:\angletwo:#2)
+    -- (#1, {#3-\systembaseradius}) arc (\anglethree:\anglefour:#3)
+    -- cycle;
+}
+
+\begin{figure*}
+  \centering
+  \NewDocumentCommand{\galaxyPlanetDescription}{mm}{\centering
+    #1\\[1ex]%
+    \itshape #2%
+  }
+  \NewDocumentCommand{\tmpXyronDescription}{}{%
+    \galaxyPlanetDescription{Xyron}{A feudal world, similar to ancient Japan.}%
+  }
+  \NewDocumentCommand{\tmpTechopiaDescription}{}{%
+    \galaxyPlanetDescription{Techopia}{A large world covered in corporations.
+      Largely considered to be the de facto capital of \system{51}.}%
+  }
+  \begin{tikzpicture}
+    % OK, let's start at the bottom with a sun.
+    \pgfmathsetmacro{\halfwidth}{8}
+    % \pgfmathsetmacro{\leftedge}{-5};
+    % \pgfmathsetmacro{\rightedge}{5};
+    \pgfmathsetmacro{\radius}{10};
+
+    \node (origin) at (0,-\radius) {origin};
+    \node (sunleft) at (-\halfwidth, 0) {(-\halfwidth, 0)};
+    \node (sunright) at (\halfwidth, 0) {(\halfwidth, 0)};
+
+    \systemarc{15}[coordinate[midway] (sun)];
+    \asteroidarc{36}{37};
+    \systemarc{19}[coordinate[midway] (firstplanet)];
+    \systemarc{21.5}[coordinate [midway] (secondplanet)];
+    \systemarc{25.5}[coordinate [midway] (thirdplanet)];
+    \systemarc{32}[coordinate [midway] (fourthplanet)];
+    \asteroidarc{36}{37.5};
+    % \systemarc{39}[coordinate [midway] (fifthplanet)];
+
+    \filldraw (firstplanet) circle (2mm);
+    \filldraw (secondplanet) circle (3mm);
+    \filldraw (thirdplanet) circle (5mm);
+    \filldraw (fourthplanet) circle (2mm);
+    % \filldraw (fifthplanet) circle (4mm);
+
+    \filldraw (fourthplanet) ++ (.3,.3) circle (1mm);
+
+    \node[above = 0.2cm of sun] (sundescription) {\textsc{Sun}};
+
+    \node[below right = 1.5cm and 4cm of firstplanet] (firstplanetdescription)  {The first planet};
+    \draw (firstplanet) to[galaxy line] (firstplanetdescription);
+
+    \node[above left = 0.5cm and 4cm of secondplanet] (secondplanetdescription)  {%
+      \parbox{4cm}{\tmpXyronDescription}};
+    \draw (secondplanet) to[galaxy line] (secondplanetdescription);
+
+    \node[above left = 2cm and 4cm of thirdplanet] (thirdplanetdescription)  {%
+      \parbox{4cm}{\tmpTechopiaDescription}};
+    \draw (thirdplanet) to[galaxy line] (thirdplanetdescription);
+
+    \node[below right = 2cm and 4cm of fourthplanet] (fourthplanetdescription)  {The fourth planet and it's moon};
+    \draw (fourthplanet) to[galaxy line] (fourthplanetdescription);
+
+    % \node[above right = 2cm and 4cm of fifthplanet] (fifthplanetdescription)  {The fifth planet};
+    % \draw (fifthplanet) to[galaxy line] (fifthplanetdescription);
+
+  \end{tikzpicture}
+\end{figure*}
 
 %%% Local Variables:
 %%% mode: latex
