@@ -26,6 +26,7 @@ all: $(PDFS)
 %.gcx: character_sheets/%.gcs
 	gcs $< -text -text_template=$(GCS_TEMPLATE)
 	mv character_sheets/$@ ./
+	test -f character_sheets/$(basename $@).png &&  mv character_sheets/$(basename $@).png ./
   # Replace % with \% inside gcx files
 	sed -i 's/%/\\%/g' $@
 
@@ -36,4 +37,5 @@ clean:
   # Removing the usual things.
 	rm -rf *_output
 	rm -f *.gcx
+	rm -f *.png
 	rm -f $(PDFS)
