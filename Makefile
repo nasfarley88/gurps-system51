@@ -16,6 +16,7 @@ all: $(PDFS)
 	ln -sf ${PWD}/images $(basename $@)_output/
 	ln -sf ${PWD}/*.tex $(basename $@)_output/
 	ln -sf ${PWD}/*.gcx $(basename $@)_output/
+	ln -sf ${PWD}/*.png $(basename $@)_output/
 	ln -sf ${PWD}/*.sty $(basename $@)_output/
 	ln -sf ${PWD}/*.lua $(basename $@)_output/
 	ln -sf ${PWD}/*.json $(basename $@)_output/
