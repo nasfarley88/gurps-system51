@@ -22,12 +22,15 @@
   \textbf{\strut Traits}\hspace{2ex}\gurps@char@traits\\\ \\
 %  \textbf{\strut Perks/Quirks} \gurps@char@perksandquirks\\\ \\
   \textbf{\strut Skills}\hspace{2ex}\gurps@char@skills\\\ \\
-  \textbf{\strut Attacks}\hspace{2ex}\gurps@char@attacks%
+  % \textbf{\strut Attacks}\hspace{2ex}
+  \luadirect{attacklist_for_npccard(_GCHARACTERKEY)}%
+  % \gurps@char@attacks%
 }
 
-\NewDocumentCommand{\printcharactercard}{m}{
-  \SetCharacterKey{#1}%
-  \def\CharacterName{#1}
+\NewDocumentCommand{\GCCardPrint}{}{
+  % \SetCharacterKey{#1}%
+  % \def\CharacterName{#1}
+  \GCGet{Name}[\CharacterName]
   \luadirect{_GGURPS_CHARACTER_CONFIG.print_points = nil}
   %
   \luadirect{%

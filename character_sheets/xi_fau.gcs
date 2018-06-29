@@ -331,7 +331,7 @@
 		</skill>
 		<skill_container version="2" open="yes">
 			<name>Techniques</name>
-			<notes>These are strictly optional but they can be a lot of fun!</notes>
+			<notes>These are strictly optional but they can be a lot of fun! :nolatex:</notes>
 			<technique version="2" limit="0">
 				<name>Dual-Weapon Attack</name>
 				<difficulty>H</difficulty>

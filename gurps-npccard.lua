@@ -37,3 +37,28 @@ function make_inline_list(arr)
   tex.sprint(strjoin("; ", tmp_tbl))
   tex.sprint([[\makeatother]])
 end
+
+-- Adapted from gurps latex package
+function attacklist_for_npccard(character_key)
+  attacks = cfilter(is_attack, character_key)
+  if attacks then
+    s = [[\makeatletter]]
+    for _,attack in ipairs(attacks) do
+      if attack.range and attack.range ~= "NotSet" then
+        range_or_reach = "range"
+      else
+        range_or_reach = "reach"
+      end
+      s = s .. [[ \scalebox{0.76}{\parbox{0.65\linewidth}{\tiny\gurps@char@print@attack]]
+        .. "{" .. attack.name .. "}"
+        .. "{" .. tostring(attack.level) .. "}"
+        .. "{" .. attack.damage .. "}"
+        .. "[" .. range_or_reach:gsub("^%l", string.upper) .. "]"
+        .. "{" .. attack[range_or_reach] .. "}"
+        .. "{" .. attack.notes .. "}"
+        .. "}} "
+    end
+    s = s .. [[ \makeatother]]
+    tex.sprint(s)
+  end
+end

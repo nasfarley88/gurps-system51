@@ -31,6 +31,7 @@ all: $(PDFS)
 # Replace % with \% inside gcx files
 	sed -i 's/%/\\%/g' $@
 	sed -i 's/+0/0/g' $@
+	sed -i 's/&quot;/"/g' $@
 
 clean:
 # Sometimes I compile in the root directory, this needs cleaning before git commtting
@@ -40,4 +41,8 @@ clean:
 	rm -rf *_output
 	rm -f *.gcx
 	rm -f *.png
+	rm -f $(PDFS)
+
+cleantex:
+	rm -rf *_output
 	rm -f $(PDFS)

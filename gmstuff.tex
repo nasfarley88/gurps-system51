@@ -231,7 +231,9 @@ They have the following weapon:
 
 \begin{figure*}
   \centering
-  \printcharactercard{Hulabaloo Quintapod 5000}
+  \SetCharacterKey{Hulabaloo Quintapod 5000}
+  \GCCardPrint
+  \ResetCharacterKey
   \caption{Quintapod 5000 NPC card}
   \label{fig:quintapod-npc-card}
 \end{figure*}
@@ -523,15 +525,23 @@ Assumes a laser rifle matches points spend with cordite rifle, but has more dama
 \getcharacterfromgcx{my_names_jeff}{Jeff Bridges}
 
 \getcharacterfromgcx*{PtcrJamesBaron}{James Baron}
-\SetCharacterKey{James Baron}
+\getcharacterfromgcx*{kyle}{Kyle}
+\getcharacterfromgcx*{nasty_mcshandy}{Nasty McShandy}
+\getcharacterfromgcx*{thomas}{Thomas}
+\getcharacterfromgcx*{rufus_grumps_deal}{Grumps}
+\getcharacterfromgcx*{xi_fau}{Xi Fau}
+
+\foreach \i in {James Baron,Kyle,Nasty McShandy,Thomas,Grumps,Xi Fau} {
+\luadirect{_GCHARACTERKEY = \luastring{\i}}
 \GCGet{Name}[\charactername]
 \section{\charactername}
 \GCPrintCharacter
 \begin{figure*}
   \centering
-  \printcharactercard{James Baron}
+  \GCCardPrint
 \end{figure*}
 \ResetCharacterKey
+}
 
 %%% Local Variables:
 %%% mode: latex
