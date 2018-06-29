@@ -2,7 +2,8 @@ version: 2
 jobs:
   build:
     docker:
-      - image: aergus/latex
+      - image: blang/latex:ubuntu
+            #- image: aergus/latex
     steps:
       - checkout
       - run:
