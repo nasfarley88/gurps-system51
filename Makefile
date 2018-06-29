@@ -25,14 +25,14 @@ all: $(PDFS)
 	cp $(basename $@)_output/$@ ./
 
 %.gcx: character_sheets/%.gcs
-	gcs $< -text -text_template=$(GCS_TEMPLATE)
+	gcs $(abspath $<) -text -text_template=$(GCS_TEMPLATE)
 	mv character_sheets/$@ ./
 	test -f character_sheets/$(basename $@).png &&  mv character_sheets/$(basename $@).png ./
-  # Replace % with \% inside gcx files
+# Replace % with \% inside gcx files
 	sed -i 's/%/\\%/g' $@
 
 clean:
-  # Sometimes I compile in the root directory, this needs cleaning before git commtting
+# Sometimes I compile in the root directory, this needs cleaning before git commtting
 	latexmk -CA
 
   # Removing the usual things.
