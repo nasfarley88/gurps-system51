@@ -21,7 +21,7 @@ all: $(PDFS)
 	ln -sf ${PWD}/*.lua $(basename $@)_output/
 	ln -sf ${PWD}/*.json $(basename $@)_output/
 	cd $(basename $@)_output/ && \
-		latexmk -lualatex $(basename $@).tex > /dev/null 2>&1
+		latexmk -lualatex $(basename $@).tex -interaction=nonstopmode > /dev/null 2>&1
 	cp $(basename $@)_output/$@ ./
 
 %.gcx: character_sheets/%.gcs
@@ -30,6 +30,7 @@ all: $(PDFS)
 	test -f character_sheets/$(basename $@).png &&  mv character_sheets/$(basename $@).png ./
 # Replace % with \% inside gcx files
 	sed -i 's/%/\\%/g' $@
+	sed -i 's/+0/0/g' $@
 
 clean:
 # Sometimes I compile in the root directory, this needs cleaning before git commtting
