@@ -1,0 +1,30 @@
+\RequirePackage{calc}
+\RequirePackage{tikz}
+
+% From https://tex.stackexchange.com/questions/44416/is-memoirs-page-layout-incompatible-with-tikz
+
+% this is the added code. Use \calculatetrims when you change page geometry
+% You also have to use "memoir page" instead of "memoir page" in tikz
+\newlength\memoirleftodd \newlength\memoirrightodd
+\newlength\memoirlefteven \newlength\memoirrighteven
+\newlength\memoirtop \newlength\memoirbottom
+\def\calculatetrims{
+    \setlength\memoirbottom{\stockheight-\paperheight-\trimtop}
+    \setlength\memoirleftodd{\stockwidth-\paperwidth-\trimedge}
+    \setlength\memoirlefteven{\trimedge}
+    \setlength\memoirtop{\memoirbottom+\paperheight}
+    \setlength\memoirrightodd{\memoirleftodd+\paperwidth}
+    \setlength\memoirrighteven{\memoirlefteven+\paperwidth}}
+\expandafter\def\csname pgf@sh@ns@memoir page\endcsname{rectangle}
+\expandafter\def\csname pgf@sh@np@memoir page\endcsname{%
+    \def\southwest{\checkoddpage\pgfqpoint{
+        \ifoddpage\memoirleftodd\else\memoirlefteven\fi}{\memoirbottom}}%
+    \def\northeast{\checkoddpage\pgfqpoint{
+        \ifoddpage\memoirrightodd\else\memoirrighteven\fi}{\memoirtop}}}
+\expandafter\def\csname pgf@sh@nt@memoir page\endcsname{{1}{0}{0}{1}{0pt}{0pt}}
+\expandafter\def\csname pgf@sh@pi@memoir page\endcsname{pgfpageorigin}
+% (Brent's additional code goes here)
+
+\calculatetrims
+
+% end of TeX.SE code

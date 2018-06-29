@@ -27,12 +27,8 @@
   % \gurps@char@attacks%
 }
 
-\NewDocumentCommand{\GCCardPrint}{}{
-  % \SetCharacterKey{#1}%
-  % \def\CharacterName{#1}
-  \GCGet{Name}[\CharacterName]
-  \luadirect{_GGURPS_CHARACTER_CONFIG.print_points = nil}
-  %
+\NewDocumentCommand{\GCCardPrint}{}{%
+  \luadirect{_GGURPS_CHARACTER_CONFIG.print_points = nil}%
   \luadirect{%
     function getlevel(x)
       if filter({name=x}, get_character(_GCHARACTERKEY)) then
@@ -44,11 +40,8 @@
       return math.random(1,6) + math.random(1,6) + math.random(1,6)
     end
   }%
-  %
-
-  % Defines \drawpic
-  \luadirect{tex_define_draw_pic()}
-  \GCGet{Character picture}[\characterpicture]
+  \GCGet{Character picture}[\characterpicture]%
+  \GCGet{Name}[\CharacterName]%
   \begin{tikzpicture}[x=1in, y=1in]
     \draw[draw,use as bounding box] (0,0) rectangle (5, 3);
     \node[
@@ -86,9 +79,9 @@
         }
       \end{minipage}
     };
-  \end{tikzpicture}
-  \luadirect{_GGURPS_CHARACTER_CONFIG.print_points = true}
-  \ResetCharacterKey
+  \end{tikzpicture}%
+  \luadirect{_GGURPS_CHARACTER_CONFIG.print_points = true}%
+  \ResetCharacterKey%
 }
 
 

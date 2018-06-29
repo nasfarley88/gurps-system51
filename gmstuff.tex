@@ -536,12 +536,30 @@ Assumes a laser rifle matches points spend with cordite rifle, but has more dama
 \GCGet{Name}[\charactername]
 \section{\charactername}
 \GCPrintCharacter
-\begin{figure*}
-  \centering
-  \GCCardPrint
-\end{figure*}
+% \begin{figure*}
+%   \centering
+%   \GCCardPrint
+% \end{figure*}
 \ResetCharacterKey
 }
+
+\section{NPC cards for the players}
+\label{sec:npccardsforplayers}
+
+\clearpage
+\begin{tikzpicture}[remember picture,overlay,placer/.style={outer sep=0pt,inner sep=0pt,rotate=90}]
+  \node[placer,anchor=north west] at (memoir page.center) {\noindent\SetCharacterKey{Thomas}\GCCardPrint\ResetCharacterKey};
+  \node[placer,anchor=north east] at (memoir page.center) {\noindent\SetCharacterKey{Nasty McShandy}\GCCardPrint\ResetCharacterKey};
+  \node[placer,anchor=south east] at (memoir page.center) {\noindent\SetCharacterKey{Kyle}\GCCardPrint\ResetCharacterKey};
+  \node[placer,anchor=south west] at (memoir page.center) {\noindent\SetCharacterKey{Xi Fau}\GCCardPrint\ResetCharacterKey};
+\end{tikzpicture}
+\clearpage
+\begin{tikzpicture}[remember picture,overlay,placer/.style={outer sep=0pt,inner sep=0pt,rotate=90}]
+  \node[placer,anchor=north west] at (memoir page.center) {\noindent\SetCharacterKey{James Baron}\GCCardPrint\ResetCharacterKey};
+  \node[placer,anchor=north east] at (memoir page.center) {\noindent\SetCharacterKey{Grumps}\GCCardPrint\ResetCharacterKey};
+  \node[placer,anchor=south east] at (memoir page.center) {\noindent\SetCharacterKey{Jeff Bridges}\GCCardPrint\ResetCharacterKey};
+\end{tikzpicture}
+\clearpage
 
 %%% Local Variables:
 %%% mode: latex
