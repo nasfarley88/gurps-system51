@@ -32,7 +32,7 @@
 	<speed>1</speed>
 	<move>0</move>
 	<include_punch>true</include_punch>
-	<include_kick>true</include_kick>
+	<include_kick>false</include_kick>
 	<include_kick_with_boots>true</include_kick_with_boots>
 	<advantage_list>
 		<advantage version="2">
