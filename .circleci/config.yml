@@ -7,8 +7,11 @@ jobs:
     steps:
       - checkout
       - run:
+          name: Getting the essentials
+          command: apt update && apt install wget git
+      - run:
           name: Checkout GCS
-          command: wget https://github.com/richardwilkes/gcs/releases/download/gcs-4.10.0/gcs-4.10.0-linux.zip && unzip *.zip -d /tmp/gcs
+          command: curl -O https://github.com/richardwilkes/gcs/releases/download/gcs-4.10.0/gcs-4.10.0-linux.zip && unzip *.zip -d /tmp/gcs
       - run:
           name: Add GCS to path!
           command: ln -s /tmp/gcs/gcs-4.10.0-linux/gcs /usr/bin/gcs
