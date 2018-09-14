@@ -66,6 +66,8 @@
 % Useful macros
 \NewDocumentCommand{\system}{m}{\textsc{System#1}}
 \NewDocumentCommand{\player}{m}{\textbf{\mbox{#1}}}
+\NewDocumentCommand{\monster}{m}{\textbf{\textit{\mbox{#1}}}}
+\NewDocumentCommand{\rollcheck}{mO{}}{\textbf{\mbox{#1#2}}}
 \NewDocumentCommand{\thecompany}{}{\textbf{The Company}\xspace}
 
 \NewDocumentCommand{\traititem}{smmm}{%
@@ -212,6 +214,7 @@
 \NewDocumentCommand{\fakefootnotemark}{m}{\textsuperscript{#1}}
 \NewDocumentCommand{\fakefootnotetext}{mm}{{\textsuperscript{#1}~{\footnotesize #2}}}
 
+\NewDocumentCommand{\npc}{m}{\textbf{#1 (NPC)}}
 
 \newcommand\dodec[1]{{90+(30*(#1-1)}}
 
